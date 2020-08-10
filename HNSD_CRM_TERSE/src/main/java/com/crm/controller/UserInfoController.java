@@ -36,11 +36,17 @@ public class UserInfoController {
         String uid = user.getUid();
         //判断realnameFlag认证标志位是否为空,为空则可以认证
         if (user.getRealnameFlag() == null) {
-            boolean result = userInfoService.insertUserInfo(userInfo, uid);
-            if (result) {
-                return ResponseUtils.success(ResSuccess.SYS_200);
+            String regex = "(^\\d{18}$)|(^\\d{15}$)";
+            String idCard = userInfo.getIdCard();
+            if(idCard.matches(regex)){
+                boolean result = userInfoService.insertUserInfo(userInfo, uid);
+                if (result) {
+                    return ResponseUtils.success(ResSuccess.SYS_200);
+                }
+                return ResponseUtils.error("500", "认证过程失败,身份证号已经存在");
+            }else{
+                return ResponseUtils.error("500", "身份证号格式错误");
             }
-            return ResponseUtils.error("500", "认证过程失败,身份证号已经存在");
         } else {
             return ResponseUtils.error("500", "已认证，不可重复认证");
         }
