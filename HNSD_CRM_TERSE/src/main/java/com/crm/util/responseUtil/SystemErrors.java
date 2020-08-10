@@ -12,7 +12,12 @@ public enum SystemErrors implements IErrors {
     SYS_500("500", "Internal Server Error", ""),
     SYS_504("504", "请求超时", ""),
     SYS_307("307", "Incorrect format", ""),
-    SYS_308("308", "Parameter error", "");
+    SYS_308("308", "存在非法字符", ""),
+    SYS_309("309","用户名长度应该在6-15个字符",""),
+    SYS_310("310","非法手机号",""),
+    SYS_311("311","用户密码错误",""),
+    SYS_312("312","不存在用户名",""),
+    SYS_313("313","密码校验错误","");
 
 
     private String code;
