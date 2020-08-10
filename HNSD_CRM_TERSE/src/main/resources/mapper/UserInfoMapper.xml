@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crm.mapper.UserInfoMapper">
+
+
+    <!--    根据name获取userInfo的id-->
+    <select id="selectByIdcard" resultType="com.crm.beans.UserInfo">
+        select id from userinfo where
+        <if test="idCard !=null and idCard != ''">
+            idCard=#{idCard}
+        </if>
+    </select>
+
+    <!--    实名认证登记信息-->
+    <insert id="insertUserInfo">
+        INSERT INTO userinfo(name, idCard, sex, age, address, postcode, sign, power, remarks,createTime,updateTime,img)
+        VALUES ( #{name}, #{idCard}, #{sex}, #{age}, #{address}, #{postCode}, #{sign},#{power}, #{remarks}, now(), #{updateTime},#{img});
+    </insert>
+
+    <resultMap id="UserInfoMap" type="com.crm.beans.UserInfo">
+        <id column="id" javaType="INTEGER" property="id" />
+        <result column="name" javaType="String" property="name"  />
+        <result column="idCard" javaType="String" property="idCard"  />
+        <result column="sex" javaType="INTEGER" property="sex"  />
+        <result column="address" javaType="String" property="address"  />
+        <result column="postCode" javaType="INTEGER" property="postCode"  />
+        <result column="sign" javaType="INTEGER" property="sign"  />
+        <result column="power" javaType="INTEGER" property="power"  />
+        <result column="remarks" javaType="String" property="remarks"  />
+    </resultMap>
+
+    <sql id="UserInfo_Column_List">
+		id, name, idCard, sex, address, postCode, sign, power, remarks
+	</sql>
+
+    <!--查询所有的用户信息-->
+    <select id="findAllUserInfo" resultMap="UserInfoMap">
+        select
+        <include refid="UserInfo_Column_List" />
+        from UserInfo
+    </select>
+
+    <!-- 通过idCard查询一个用户 -->
+    <select id="findUserInfoByIdCard" parameterType="String" resultType="com.crm.beans.UserInfo">
+        select <include refid="UserInfo_Column_List" />
+        from UserInfo
+        where idCard=#{idCard};
+    </select>
+
+    <!-- 通过username 模糊查询用户列表
+        #{}: 占位符
+        ${}：字符串拼接
+     -->
+    <select id="findUserByUsername" parameterType="String" resultType="com.crm.beans.UserInfo">
+        select * from user where username like '%%';
+    </select>
+
+    <!-- 更新用户 -->
+    <update id="updateUserInfo" parameterType="com.crm.beans.UserInfo">
+        update userInfo
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+
+            <if test="sex !=null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="age !=null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="address !=null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="postCode !=null">
+                postCode = #{postCode,jdbcType=INTEGER},
+            </if>
+            <if test="sign !=null">
+                sign =  #{sign,jdbcType=INTEGER},
+            </if>
+            <if test="power !=null">
+                power = #{power,jdbcType=INTEGER},
+            </if>
+            <if test="remarks !=null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime !=null">
+                updateTime = #{updateTime,jdbcType=DATE}
+            </if>
+        </set>
+        where idCard = #{idCard,jdbcType=VARCHAR}
+    </update>
+
+    <!-- 删除用户 -->
+    <delete id="deleteUserInfoByIdCard" parameterType="String">
+        delete from userinfo where idCard= #{idCard};
+    </delete>
+
+</mapper>

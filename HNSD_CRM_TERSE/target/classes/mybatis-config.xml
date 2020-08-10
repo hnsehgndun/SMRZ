@@ -2,16 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!-- mybatis默认是没有开启延迟加载的 需要手动开启 -->
-   <!-- <settings>
-       &lt;!&ndash; &lt;!&ndash; 延迟加载 默认false &ndash;&gt;
-        <setting name="lazyLoadingEnabled" value="true" />
-        &lt;!&ndash; 积极加载 默认true &ndash;&gt;
-        <setting name="aggressiveLazyLoading" value="false" />
-        &lt;!&ndash;开启缓存&ndash;&gt;
-        <setting name="cacheEnabled" value="true"/>&ndash;&gt;
-    </settings>-->
     <!--起别名-->
+    <settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
     <typeAliases>
         <package name="com.crm.beans"></package>
     </typeAliases>
