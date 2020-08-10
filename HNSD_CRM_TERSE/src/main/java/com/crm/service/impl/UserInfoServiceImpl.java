@@ -24,19 +24,26 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public boolean insertUserInfo(UserInfo userInfo, String uid) {
-        //判断是否之前实名过
-        User user = userMapper.selectRealName(uid);
-        if (user == null) {
-            System.out.println("下一步是想userinfo表中插入信息");
-            //没有实名过,那就去userinfo表登记信息
-            userInfoMapper.insertUserInfo(userInfo);
-            //同时根据idCarid获取userInfo中的id
-            UserInfo userInfoId = userInfoMapper.selectByIdcard(userInfo.getIdCard());
+        //因为身份证要唯一,要参数校验
+        Integer row = userInfoMapper.selectByIdcard(userInfo.getIdCard());
+        if (row == null) {
+            //没有实名过,那就去userinfo表登记信息,返回插入记录的主键id
+            Integer result = userInfoMapper.insertUserInfo(userInfo);
+            logger.info("userInfo表插入一条记录"+result);
             //向user表中做一个标记,证明已经认证过,realNameFlag
-            userMapper.setRealNameFlag(userInfoId.getId());
-            return true;
+            //获取当前插入记录的id
+            int userInfoId = userInfo.getId();
+            boolean setRealNameFlagResult = userMapper.setRealNameFlag(userInfoId, uid);
+            logger.info("update  user表的realNameFlag字段"+setRealNameFlagResult);
+            //userinfo表记录插入成功&&user表 realNameFlag 插入成功
+            if (userInfoId != 0 && setRealNameFlagResult == true) {
+                return true;
+            } else {
+                //认证失败
+                return false;
+            }
         } else {
-            //实名过,不需要再进行实名
+            //表中存在身份证,已经认证
             return false;
         }
     }

@@ -48,130 +48,123 @@ public class UserInfo implements Serializable {
     @ApiModelProperty(hidden = true)
     private Date updateTime;
 
-    //存放图片
-    private String img;
+    //身份证正面
+    private String imgObverse;
 
-    public UserInfo() {
-    }
+    //身份证背面
+    private String imgReverse;
 
-    public UserInfo(int id, String name, String idCard, int sex, int age, String address, int postCode, int sign, int power, String remarks, Date createTime, Date updateTime, String img) {
-        this.id = id;
-        this.name = name;
-        this.idCard = idCard;
-        this.sex = sex;
-        this.age = age;
-        this.address = address;
-        this.postCode = postCode;
-        this.sign = sign;
-        this.power = power;
-        this.remarks = remarks;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.img = img;
-    }
-
-    public int getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getIdCard() {
-        return idCard;
-    }
-
     public void setIdCard(String idCard) {
         this.idCard = idCard;
-    }
-
-    public int getSex() {
-        return sex;
     }
 
     public void setSex(int sex) {
         this.sex = sex;
     }
 
-    public int getAge() {
-        return age;
-    }
-
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public int getPostCode() {
-        return postCode;
-    }
-
     public void setPostCode(int postCode) {
         this.postCode = postCode;
-    }
-
-    public int getSign() {
-        return sign;
     }
 
     public void setSign(int sign) {
         this.sign = sign;
     }
 
-    public int getPower() {
-        return power;
-    }
-
     public void setPower(int power) {
         this.power = power;
-    }
-
-    public String getRemarks() {
-        return remarks;
     }
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
     }
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
-    public String getImg() {
-        return img;
+    public void setImgObverse(String imgObverse) {
+        this.imgObverse = imgObverse;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImgReverse(String imgReverse) {
+        this.imgReverse = imgReverse;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getPostCode() {
+        return postCode;
+    }
+
+    public int getSign() {
+        return sign;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public String getImgObverse() {
+        return imgObverse;
+    }
+
+    public String getImgReverse() {
+        return imgReverse;
     }
 
     @Override
@@ -189,7 +182,8 @@ public class UserInfo implements Serializable {
                 ", remarks='" + remarks + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", img='" + img + '\'' +
+                ", imgObverse='" + imgObverse + '\'' +
+                ", imgReverse='" + imgReverse + '\'' +
                 '}';
     }
 }

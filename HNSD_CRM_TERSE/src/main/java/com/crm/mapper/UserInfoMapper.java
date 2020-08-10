@@ -2,6 +2,7 @@ package com.crm.mapper;
 
 
 import com.crm.beans.UserInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,9 +10,10 @@ import java.util.List;
 @Repository
 public interface UserInfoMapper {
     //根据idcarid获取userinfo表中的id
-    UserInfo selectByIdcard(String idCard);
+    Integer selectByIdcard(@Param("idCard") String idCard);
+
     //实名认证登记信息
-    int insertUserInfo(UserInfo userInfo);
+    Integer insertUserInfo(UserInfo userInfo);
 
 
 

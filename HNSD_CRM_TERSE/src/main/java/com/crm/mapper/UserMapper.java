@@ -3,6 +3,7 @@ package com.crm.mapper;
 
 
 import com.crm.beans.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface UserMapper {
     boolean addUser(User user);
 
     //登陆接口
-    User login(String uid);
+    User login(@Param("uid") String uid);
 
     //查看是否用重复的账号id
     boolean getUserByUid(String uid);
@@ -27,8 +28,6 @@ public interface UserMapper {
     //修改个人信息  暂时只有一个手机号可以修改
     boolean updateuserInfo(String uid,String uphone);
 
-    //查user表中是否认证的标志
-    User selectRealName(String uid);
     //把userinfo表的id放入user表的realName_flag字段中
-    int setRealNameFlag(int id);
+    boolean setRealNameFlag(@Param("userInfoId") Integer userInfoId,@Param("uid") String uid);
 }

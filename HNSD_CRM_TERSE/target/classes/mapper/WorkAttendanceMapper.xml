@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crm.mapper.WorkAttendanceMapper">
+    <insert id="addWorkAttendance">
+        insert into work_attendance (user_id,work_flag,work_attendance_time,work_minute,delay_time,work_day,work_desc)
+        values(#{userId},#{workFlag},NOW(),#{workMinute},#{delayTime},#{workDay},#{workDesc})
+    </insert>
+
+    <select id="getAllWorkAttendance" resultType="com.crm.beans.WorkAttendance">
+        SELECT a.* FROM work_attendance AS a LEFT JOIN USER AS b ON a.user_id =b.id where 1=1
+        <if test="uphone != null and uphone !=''">
+            and b.uphone =#{uphone}
+        </if>
+    </select>
+    
+    <select id="getWorkAttendanceByIdAndDate" resultType="com.crm.beans.WorkAttendance">
+        select * from work_attendance where 1=1
+        <if test="userId !=null and userId != '' ">
+            and user_id = #{userId}
+        </if>
+        <if test="workDay !=null and workDay !=''">
+            and work_day =#{workDay}
+        </if>
+    </select>
+</mapper>
