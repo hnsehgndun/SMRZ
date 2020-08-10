@@ -3,13 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.crm.mapper.UserMapper">
-    <!--    注册账号-->
-    <insert id="addUser"  useGeneratedKeys="true">
-        insert into user (username,password,uphone) values (#{username},#{password},#{uphone})
-        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id" >
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+<!--    注册账号-->
+    <insert id="addUser" parameterType="com.crm.beans.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="uphone != null">
+                uphone
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="uphone != null">
+                #{uphone,jdbcType=VARCHAR}
+            </if>
+        </trim>
     </insert>
+
+<!--    登录-->
     <select id="login" resultType="com.crm.beans.User">
         select * from user where 1=1
         <if test="username !=null and username !=''">
@@ -17,7 +38,7 @@
         </if>
     </select>
 
-    <select id="getUserByUid" resultType="java.lang.Boolean">
+    <select id="getUserByUserName" resultType="java.lang.Boolean">
         <!--  返回1代表true  返回0代表false      -->
         <![CDATA[ select count(id) from user where username=#{username} ]]>
     </select>
@@ -49,8 +70,8 @@
             realname_flag=#{userInfoId}
         </if>
         where
-        <if test="uid !=null and uid != ''">
-            uid=#{username}
+        <if test="username !=null and username != ''">
+            username=#{username}
         </if>
 
     </update>

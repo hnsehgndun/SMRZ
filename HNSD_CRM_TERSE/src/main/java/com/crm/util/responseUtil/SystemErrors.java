@@ -19,7 +19,6 @@ public enum SystemErrors implements IErrors {
     SYS_312("312","不存在用户名",""),
     SYS_313("313","密码校验错误","");
 
-
     private String code;
     private String message;
     private String solution;

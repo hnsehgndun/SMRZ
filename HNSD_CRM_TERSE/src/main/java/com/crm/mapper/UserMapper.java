@@ -17,7 +17,7 @@ public interface UserMapper {
     User login(@Param("username") String username);
 
     //查看是否用重复的账号id
-    boolean getUserByUid(String username);
+    boolean getUserByUserName(@Param("username") String username);
 
     //查看所有用户信息
     List<User> getAllUser(@Param("uphone") String uphone,@Param("username") String username);
@@ -28,9 +28,8 @@ public interface UserMapper {
     //修改个人信息  暂时只有一个手机号可以修改
     boolean updateuserInfo(@Param("username") String username,@Param("uphone") String uphone);
 
-    //查user表中是否认证的标志
-    User selectRealName(@Param("username") String username);
+
 
     //把userinfo表的id放入user表的realName_flag字段中
-    boolean setRealNameFlag(@Param("userInfoId") Integer userInfoId,@Param("uid") String uid);
+    boolean setRealNameFlag(@Param("userInfoId") Integer userInfoId,@Param("username") String username);
 }

@@ -24,7 +24,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     private UserMapper userMapper;
 
     @Override
-    public boolean insertUserInfo(UserInfo userInfo, String uid) {
+    public boolean insertUserInfo(UserInfo userInfo, String username) {
         //因为身份证要唯一,要参数校验
         Integer row = userInfoMapper.selectByIdcard(userInfo.getIdCard());
         if (row == null) {
@@ -34,7 +34,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             //向user表中做一个标记,证明已经认证过,realNameFlag
             //获取当前插入记录的id
             int userInfoId = userInfo.getId();
-            boolean setRealNameFlagResult = userMapper.setRealNameFlag(userInfoId, uid);
+            boolean setRealNameFlagResult = userMapper.setRealNameFlag(userInfoId, username);
             logger.info("update  user表的realNameFlag字段"+setRealNameFlagResult);
             //userinfo表记录插入成功&&user表 realNameFlag 插入成功
             if (userInfoId != 0 && setRealNameFlagResult == true) {

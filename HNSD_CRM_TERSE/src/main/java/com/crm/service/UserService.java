@@ -14,7 +14,7 @@ public interface UserService {
     User login(String username);
 
     //查看是否用重复的账号id
-    boolean getUserByUid(String uid);
+    boolean getUserByUserName(String username);
 
     //查询所有用户信息
     List<User> getAllUser(String uphone,String uid);

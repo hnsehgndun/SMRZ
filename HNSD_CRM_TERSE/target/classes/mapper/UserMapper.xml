@@ -7,8 +7,8 @@
     <insert id="addUser" parameterType="com.crm.beans.User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="uid != null">
-                uid,
+            <if test="username != null">
+                username,
             </if>
             <if test="password != null">
                 password,
@@ -16,11 +16,10 @@
             <if test="uphone != null">
                 uphone
             </if>
-
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="uid != null">
-                #{uid,jdbcType=VARCHAR},
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
             </if>
             <if test="password != null">
                 #{password,jdbcType=VARCHAR},
@@ -34,14 +33,14 @@
 <!--    登录-->
     <select id="login" resultType="com.crm.beans.User">
         select * from user where 1=1
-        <if test="uid !=null">
-            and uid = #{uid}
+        <if test="username !=null and username !=''">
+            and username = #{username}
         </if>
     </select>
 
-    <select id="getUserByUid" resultType="java.lang.Boolean">
+    <select id="getUserByUserName" resultType="java.lang.Boolean">
         <!--  返回1代表true  返回0代表false      -->
-        <![CDATA[ select count(id) from user where uid=#{uid} ]]>
+        <![CDATA[ select count(id) from user where username=#{username} ]]>
     </select>
 
     <select id="getAllUser" resultType="com.crm.beans.User">
@@ -49,26 +48,20 @@
         <if test="uphone!= null and uphone !=''">
             and uphone like '%${uphone}%'
         </if>
-        <if test="uid !=null and uid !=''">
-            and uid like '%${uid}%'
+        <if test="username !=null and username !=''">
+            and username like '%${username}%'
         </if>
     </select>
 
     <update id="restPassword">
-        update user set password =#{newpassword} where uid =#{uid}
+        update user set password =#{newpassword} where username =#{username}
     </update>
     
     <update id="updateuserInfo">
-        update user set uphone =#{uphone} where uid =#{uid}
+        update user set uphone =#{uphone} where username =#{username}
     </update>
 
-    <!--判断是否已经进行实名认证-->
-    <select id="selectRealName" resultType="com.crm.beans.User">
-        select realname_flag from user where 1=1
-        <if test="uid !=null and uid != ''">
-            and uid = #{uid}
-        </if>
-    </select>
+
 
     <!--    实名认证后,向user表的realName中写入UserInfo的id-->
     <update id="setRealNameFlag">
@@ -77,8 +70,8 @@
             realname_flag=#{userInfoId}
         </if>
         where
-        <if test="uid !=null and uid != ''">
-            uid=#{uid}
+        <if test="username !=null and username != ''">
+            username=#{username}
         </if>
 
     </update>

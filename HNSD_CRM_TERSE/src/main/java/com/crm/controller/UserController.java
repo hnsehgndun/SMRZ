@@ -50,24 +50,25 @@ public class UserController {
     @ApiImplicitParam(name = "param", value = "用户名(username)和密码(password)", required = true, dataType = "Map")
     @ApiOperation(value = "登陆",httpMethod = "POST")
     @PostMapping("/login")
-    public JSONResponse login(HttpServletRequest request, @RequestBody HashMap<String,String> param){
+    public JSONResponse login(HttpServletRequest request, @RequestBody HashMap<String,String> param) {
         //查询库中数据
         User datauser = userService.login(param.get("username"));
         //对密码进行加密
-        if(datauser != null){
+        if (datauser != null) {
             String md5password = Md5.md5(param.get("password"));
-            if(md5password.equals(datauser.getPassword())){
+            if (md5password.equals(datauser.getPassword())) {
                 HttpSession session = request.getSession();
-                session.setAttribute("loginUser",datauser);
+                session.setAttribute("loginUser", datauser);
                 String ipaddress = IpUtils.getLoaclIp(request);
                 //用户登陆日志记录
-                userOperationRecordService.addUserOperationRecord(new UserOperationRecord(datauser.getUsername(),"登陆了系统",ipaddress,new Date()));
-                return ResponseUtils.success(ResSuccess.SYS_200,datauser);
+                userOperationRecordService.addUserOperationRecord(new UserOperationRecord(datauser.getUsername(), "登陆了系统", ipaddress, new Date()));
+                return ResponseUtils.success(ResSuccess.SYS_200, datauser);
+            } else {
+                return ResponseUtils.error(SystemErrors.SYS_313);
             }
-        }else {
+        } else {
             return ResponseUtils.error(SystemErrors.SYS_311);
         }
-        return ResponseUtils.error(SystemErrors.SYS_312);
     }
 
     //用户进行注册

@@ -32,14 +32,14 @@ public class UserInfoController {
     public JSONResponse realName(@RequestBody UserInfo userInfo, HttpSession session){
         //用户登录以后所有信息都在session中
         User user = (User) session.getAttribute("loginUser");
-        //获取账号名uid
-        String uid = user.getUsername();
+        //获取账号名usernaem
+        String username = user.getUsername();
         //判断realnameFlag认证标志位是否为空,为空则可以认证
         if (user.getRealnameFlag() == null) {
             String regex = "(^\\d{18}$)|(^\\d{15}$)";
             String idCard = userInfo.getIdCard();
             if(idCard.matches(regex)){
-                boolean result = userInfoService.insertUserInfo(userInfo, uid);
+                boolean result = userInfoService.insertUserInfo(userInfo, username);
                 if (result) {
                     return ResponseUtils.success(ResSuccess.SYS_200);
                 }
@@ -48,7 +48,7 @@ public class UserInfoController {
                 return ResponseUtils.error("500", "身份证号格式错误");
             }
         } else {
-            return ResponseUtils.error("500", "已认证，不可重复认证");
+            return ResponseUtils.error(SystemErrors.SYS_424);
         }
     }
 }

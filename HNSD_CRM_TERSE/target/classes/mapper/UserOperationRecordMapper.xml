@@ -5,6 +5,6 @@
 <mapper namespace="com.crm.mapper.UserOperationRecordMapper">
 
     <insert id="addUserOperationRecord">
-        insert into user_operation_record (uid,operation,ipaddress,operation_date) values (#{uid},#{operation},#{ipaddress},#{operationDate})
+        insert into user_operation_record (username,operation,ipaddress,operation_date) values (#{username},#{operation},#{ipaddress},#{operationDate})
     </insert>
 </mapper>

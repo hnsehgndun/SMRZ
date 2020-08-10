@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer addUser(User user) {
         //注册时先判断此用户名是否已经存在
-        boolean result = getUserByUid(user.getUsername());
+        boolean result = getUserByUserName(user.getUsername());
         if(result){
             return 0;
         }
@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService {
 
     @MyLogAnnonation(detail = "通过id查找是否有重复的用户",level = 1,operationUnit = OperationUnit.USER,operationType = OperationType.SELECT)
     @Override
-    public boolean getUserByUid(String uid) {
-        return userMapper.getUserByUid(uid);
+    public boolean getUserByUserName(String username) {
+        return userMapper.getUserByUserName(username);
     }
 
     @MyLogAnnonation(detail = "获取所有用户",level = 1,operationUnit = OperationUnit.USER,operationType = OperationType.SELECT)
