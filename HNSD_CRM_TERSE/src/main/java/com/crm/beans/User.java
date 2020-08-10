@@ -6,24 +6,18 @@ import java.io.Serializable;
 
 
 public class User implements Serializable {
-    @ApiModelProperty(hidden = true)
     private Integer id;
-    private String uid;
+    private String username;
     private String password;
     private String uphone;
-
-    @ApiModelProperty(hidden = true)
     private Integer realnameFlag;
-    //临时变量  验证码
-    @ApiModelProperty(hidden = true)
-    private String randomcode;
 
     public User() {
     }
 
-    public User(Integer id, String uid, String password, String uphone, Integer realnameFlag) {
+    public User(Integer id, String username, String password, String uphone, Integer realnameFlag) {
         this.id = id;
-        this.uid = uid;
+        this.username = username;
         this.password = password;
         this.uphone = uphone;
         this.realnameFlag = realnameFlag;
@@ -37,12 +31,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUid() {
-        return uid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -69,19 +63,11 @@ public class User implements Serializable {
         this.realnameFlag = realnameFlag;
     }
 
-    public String getRandomcode() {
-        return randomcode;
-    }
-
-    public void setRandomcode(String randomcode) {
-        this.randomcode = randomcode;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", uid='" + uid + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", uphone='" + uphone + '\'' +
                 ", realnameFlag=" + realnameFlag +

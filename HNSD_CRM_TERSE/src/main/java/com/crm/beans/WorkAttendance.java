@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class WorkAttendance implements Serializable {
-    @ApiModelProperty(hidden = true)
     private Integer id;
     private Integer userId;
     private Integer workFlag;

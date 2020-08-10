@@ -7,7 +7,7 @@ import java.util.Date;
 //操作记录日志
 public class UserOperationRecord implements Serializable {
     private Integer id;
-    private String uid;
+    private String username;
     private String operation;
     private String ipaddress;
     private Date operationDate;
@@ -15,8 +15,8 @@ public class UserOperationRecord implements Serializable {
     public UserOperationRecord() {
     }
 
-    public UserOperationRecord(String uid, String operation, String ipaddress, Date operationDate) {
-        this.uid = uid;
+    public UserOperationRecord(String username, String operation, String ipaddress, Date operationDate) {
+        this.username = username;
         this.operation = operation;
         this.ipaddress = ipaddress;
         this.operationDate = operationDate;
@@ -29,13 +29,12 @@ public class UserOperationRecord implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public String getUid() {
-        return uid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getOperation() {
@@ -66,7 +65,7 @@ public class UserOperationRecord implements Serializable {
     public String toString() {
         return "UserOperationRecord{" +
                 "id=" + id +
-                ", uid='" + uid + '\'' +
+                ", username='" + username + '\'' +
                 ", operation='" + operation + '\'' +
                 ", ipaddress='" + ipaddress + '\'' +
                 ", operationDate=" + operationDate +

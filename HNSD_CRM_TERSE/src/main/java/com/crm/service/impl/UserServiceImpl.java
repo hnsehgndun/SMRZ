@@ -19,17 +19,17 @@ public class UserServiceImpl implements UserService {
 
     //需要加AOP日志的以这个格式
     @Override
-    public boolean addUser(User user) {
+    public Integer addUser(User user) {
         //注册时先判断此用户名是否已经存在
-        boolean result = getUserByUid(user.getUid());
+        boolean result = getUserByUid(user.getUsername());
         if(result){
-            return false;
+            return 0;
         }
         return userMapper.addUser(user);
     }
     @Override
-    public User login(String uid) {
-        return userMapper.login(uid);
+    public User login(String username) {
+        return userMapper.login(username);
     }
 
     @MyLogAnnonation(detail = "通过id查找是否有重复的用户",level = 1,operationUnit = OperationUnit.USER,operationType = OperationType.SELECT)

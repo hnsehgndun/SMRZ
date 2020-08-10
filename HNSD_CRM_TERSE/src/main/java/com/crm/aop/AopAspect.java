@@ -86,7 +86,7 @@ public class AopAspect {
         operationLog.setArgs(JSON.toJSONString(joinPoint.getArgs()));
         operationLog.setOperationDate(new Date());
         operationLog.setMethod(signature.getDeclaringTypeName() + "." + signature.getName());
-        operationLog.setUid(sessionuser.getUid());
+        operationLog.setUid(sessionuser.getUsername());
         MyLogAnnonation annotation = signature.getMethod().getAnnotation(MyLogAnnonation.class);
         if (annotation != null) {
             operationLog.setLevel(annotation.level());
@@ -116,7 +116,7 @@ public class AopAspect {
 
         String detail = annotation.detail();
         try {
-            detail = "'" + "#{"+user.getUid()+"}" + "'=》" + annotation.detail();
+            detail = "'" + "#{"+user.getUsername()+"}" + "'=》" + annotation.detail();
             for (Map.Entry<Object, Object> entry : map.entrySet()) {
                 Object k = entry.getKey();
                 Object v = entry.getValue();

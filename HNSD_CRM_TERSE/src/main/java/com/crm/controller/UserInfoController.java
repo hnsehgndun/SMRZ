@@ -33,7 +33,7 @@ public class UserInfoController {
         //用户登录以后所有信息都在session中
         User user = (User) session.getAttribute("loginUser");
         //获取账号名uid
-        String uid = user.getUid();
+        String uid = user.getUsername();
         //判断realnameFlag认证标志位是否为空,为空则可以认证
         if (user.getRealnameFlag() == null) {
             String regex = "(^\\d{18}$)|(^\\d{15}$)";
