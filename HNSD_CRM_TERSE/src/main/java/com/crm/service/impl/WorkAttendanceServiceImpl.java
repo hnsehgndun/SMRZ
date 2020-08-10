@@ -33,12 +33,15 @@ public class WorkAttendanceServiceImpl implements WorkAttendanceService {
 
     @MyLogAnnonation(detail = "打卡", level = 1, operationUnit = OperationUnit.WORKATTENDANCE, operationType = OperationType.INSERT)
     @Override
-    public boolean addWorkAttendance(WorkAttendance workAttendance) throws Exception {
+    public boolean addWorkAttendance(String user_id,String work_attendance_desc) throws Exception {
         //获取打卡的时候的当前日期
         long nowtime = System.currentTimeMillis();
         //打卡时间
         Date todaydate = new Date(nowtime);
         String todayStr = daysimpleDateFormat.format(todaydate);
+        WorkAttendance workAttendance = new WorkAttendance();
+        workAttendance.setUserId(Integer.parseInt(user_id));
+        workAttendance.setWorkDesc(work_attendance_desc);
         List<WorkAttendance> work_count = getWorkAttendanceByIdAndDate(workAttendance.getUserId(), todayStr);
         if (work_count.size() >= 2) {
             System.out.println("当天打卡差过两次");
