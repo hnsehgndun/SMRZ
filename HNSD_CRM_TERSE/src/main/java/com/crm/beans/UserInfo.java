@@ -10,7 +10,6 @@ import java.util.Date;
  */
 public class UserInfo implements Serializable {
     //主键
-    @ApiModelProperty(hidden = true)
     private int id;
 
     //用户姓名
