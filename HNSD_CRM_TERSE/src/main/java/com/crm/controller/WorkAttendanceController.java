@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,12 +26,15 @@ public class WorkAttendanceController {
     private WorkAttendanceService workAttendanceService;
 
     @ApiOperation(value = "打卡接口")
-    @ApiImplicitParam(name = "workAttendance",value = "打卡信息实体",required = true,dataType = "WorkAttendance")
+    @ApiImplicitParam(name = "param",value = "用户id(user_id),打卡备注(work_attendance_desc)",required = true,dataType = "Map")
     @PostMapping("/addworkAttendance")
-    public JSONResponse addWorkAttendance(@RequestBody WorkAttendance workAttendance){
+    public JSONResponse addWorkAttendance(@RequestBody  HashMap<String,String> param){
+        //用户id
+        String user_id = param.get("user_id");
+        String work_attendance_desc = param.get("work_attendance_desc");
         boolean result = false;
         try {
-            result = workAttendanceService.addWorkAttendance(workAttendance);
+            result = workAttendanceService.addWorkAttendance(user_id,work_attendance_desc);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,9 +46,8 @@ public class WorkAttendanceController {
     }
 
     @ApiOperation(value = "查询打卡记录")
-    @ApiImplicitParam(name = "uphone",value = "用户手机号",paramType = "path" ,required = false,dataType = "String")
-    @GetMapping("/workattdendances/{uphone}")
-    public JSONResponse getAllWorkAttendance(@PathVariable("uphone") String uphone){
+    @GetMapping("/workattdendances")
+    public JSONResponse getAllWorkAttendance(@RequestParam(value = "uphone",required = false) String uphone){
         List<WorkAttendance> list = workAttendanceService.getAllWorkAttendance(uphone);
         return ResponseUtils.success(ResSuccess.SYS_200,list);
     }

@@ -95,32 +95,14 @@
     <!-- 开启aop对类代理 -->
     <aop:config proxy-target-class="true"/>
 
-    <!--拦截器配置-->
-    <!--<mvc:interceptors>
-        &lt;!&ndash;  使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求   &ndash;&gt;
-        <mvc:interceptor>
-            <mvc:mapping path="/**" />&lt;!&ndash;拦截所有&ndash;&gt;
-            <mvc:exclude-mapping path="/login"/>&lt;!&ndash;不拦截哪些&ndash;&gt;
-            <mvc:exclude-mapping path="/swagger-resources/**"/>&lt;!&ndash; swagger静态资源&ndash;&gt;
-            <mvc:exclude-mapping path="/v2/**"/>&lt;!&ndash; swagger静态资源&ndash;&gt;
-            <mvc:exclude-mapping path="/swagger-ui.html/**"/>&lt;!&ndash; swagger静态资源&ndash;&gt;
-            <mvc:exclude-mapping path="/swagger-resources/**"/>&lt;!&ndash; swagger静态资源&ndash;&gt;
-            <mvc:exclude-mapping path="/webjars/**"/>&lt;!&ndash; swagger静态资源&ndash;&gt;
-            <bean class="com.crm.interceptor.LoginHandlerInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>-->
 
     <!--静态资源引入-->
     <mvc:default-servlet-handler/>
 
     <!--跨域设置-->
     <mvc:cors>
-        <mvc:mapping path="/**" allow-credentials="true" allowed-methods="*" allowed-headers="*" allowed-origins="*"/>
+        <mvc:mapping path="/**" allow-credentials="false" allowed-methods="*" allowed-headers="*" allowed-origins="*"/>
     </mvc:cors>
-
-    <!--swagger静态资源-->
-    <!--<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
-    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>-->
 
     <!--加载百度配置参数-->
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">

@@ -10,52 +10,21 @@ import java.net.URLEncoder;
  * @Description: 验证码通知短信接口
  *
  */
-public class IndustrySMS
-{
-	private static String operation = "/industrySMS/sendSMS";
-
+public class IndustrySMS {
 	private static String accountSid = Config.ACCOUNT_SID;
 	private static String to = "15737161830";
 	private static String smsContent = "您的验证码为15265，请于30分钟内正确输入，如非本人操作，请忽略此短信。";
 
-	/**
-	 * 验证码通知短信
-	 */
-	public static void execute()
-	{
-		String tmpSmsContent = null;
-	    try{
-	      tmpSmsContent = URLEncoder.encode(smsContent, "UTF-8");
-	    }catch(Exception e){
-	      
-	    }
-	    String url = Config.BASE_URL + operation;
-	    String body = "accountSid=" + accountSid + "&to=" + to + "&smsContent=" + tmpSmsContent
-	        + HttpUtil.createCommonParam();
 
-	    // 提交请求
-	    String result = HttpUtil.post(url, body);
-	    System.out.println("result:" + System.lineSeparator() + result);
-	}
-	
-	/**
-	 * 重载execute方法
-	 */
-	public static void execute(String phoneNum,String RandomNum){
-		to=phoneNum;
-		smsContent="您的验证码为" + RandomNum + "，请于30分钟内正确输入，如非本人操作，请忽略此短信。";
-		String tmpSmsContent = null;
-	    try{
-	      tmpSmsContent = URLEncoder.encode(smsContent, "UTF-8");
-	    }catch(Exception e){
-	      
-	    }
-	    String url = Config.BASE_URL + operation;
-	    String body = "accountSid=" + accountSid + "&to=" + to + "&smsContent=" + tmpSmsContent
-	        + HttpUtil.createCommonParam();
+	public static void execute(String phoneNum,String randomNum) throws Exception{
+		StringBuilder sb = new StringBuilder();
+		sb.append("accountSid").append("=").append(Config.ACCOUNT_SID);
+		sb.append("&to").append("=").append(phoneNum);
+		sb.append("&param").append("=").append(URLEncoder.encode("","UTF-8"));
+		sb.append("&smsContent").append("=").append( URLEncoder.encode("【秒嘀科技】您的验证码为"+randomNum+"，该验证码5分钟内有效。请勿泄漏于他人。","UTF-8"));
+		String body = sb.toString() + HttpUtil.createCommonParam(Config.ACCOUNT_SID, Config.AUTH_TOKEN);
+		String result = HttpUtil.post(Config.BASE_URL, body);
+		System.out.println(result);
 
-	    // 提交请求
-	    String result = HttpUtil.post(url, body);
-	    System.out.println("result:" + System.lineSeparator() + result);
 	}
 }

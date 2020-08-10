@@ -38,12 +38,12 @@ public class UserController {
     @ApiOperation(value = "获取动态验证码")
     @ApiImplicitParam(name = "phoneNum", value = "用户手机号", paramType = "path", required = true, dataType = "String")
     @GetMapping("/getCode/{phoneNum}")
-    public void getCode(@ApiParam(value = "用户手机号",required = true) @PathVariable(value = "phoneNum") String phoneNum, HttpSession session) {
-        String RandomNum = (int) (Math.random() * (999999 - 100000 + 1)) + 100000 + "";
+    public void getCode(@ApiParam(value = "用户手机号",required = true) @PathVariable(value = "phoneNum") String phoneNum, HttpSession session) throws Exception {
+       /* String RandomNum = (int) (Math.random() * (999999 - 100000 + 1)) + 100000 + "";
         //秒滴科技的接口实现
         IndustrySMS.execute(phoneNum, RandomNum);
         //将随机数放入session中
-        session.setAttribute("code", RandomNum);
+        session.setAttribute("code", RandomNum);*/
     }
 
     //登陆
