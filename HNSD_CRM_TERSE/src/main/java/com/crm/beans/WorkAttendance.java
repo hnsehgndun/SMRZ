@@ -1,5 +1,6 @@
 package com.crm.beans;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
@@ -9,11 +10,13 @@ public class WorkAttendance implements Serializable {
     private Integer id;
     private Integer userId;
     private Integer workFlag;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date workAttendanceTime;
     private Integer workMinute;
     private Integer delayTime;
     private String workDay;
     private String workDesc;
+    private String uphone;
 
     public WorkAttendance() {
     }
@@ -27,6 +30,14 @@ public class WorkAttendance implements Serializable {
         this.delayTime = delayTime;
         this.workDay = workDay;
         this.workDesc = workDesc;
+    }
+
+    public String getUphone() {
+        return uphone;
+    }
+
+    public void setUphone(String uphone) {
+        this.uphone = uphone;
     }
 
     public Integer getId() {
