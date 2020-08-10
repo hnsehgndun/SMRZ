@@ -26,7 +26,7 @@ public class UserInfoController {
     @PostMapping("/realName")
     public JSONResponse realName(UserInfo userInfo, HttpSession session){
         User user = (User) session.getAttribute("loginUser");
-        String uid = user.getUid();
+        String uid = user.getUsername();
         boolean result = userInfoService.insertUserInfo(userInfo, uid);
         if (result) {
             return ResponseUtils.success(ResSuccess.SYS_200, user);
