@@ -63,11 +63,14 @@ public class UserController {
                 //用户登陆日志记录
                 userOperationRecordService.addUserOperationRecord(new UserOperationRecord(datauser.getUsername(),"登陆了系统",ipaddress,new Date()));
                 return ResponseUtils.success(ResSuccess.SYS_200,datauser);
+            }else{
+                //密码错误
+                return ResponseUtils.error(SystemErrors.SYS_311);
             }
         }else {
-            return ResponseUtils.error(SystemErrors.SYS_311);
+            //不存在用户名
+            return ResponseUtils.error(SystemErrors.SYS_312);
         }
-        return ResponseUtils.error(SystemErrors.SYS_312);
     }
 
     //用户进行注册
