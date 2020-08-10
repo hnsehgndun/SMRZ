@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface UserService {
     //注册用户
-    boolean addUser(User user);
+    Integer addUser(User user);
 
     //登陆接口
-    User login(String uid);
+    User login(String username);
 
     //查看是否用重复的账号id
     boolean getUserByUid(String uid);
