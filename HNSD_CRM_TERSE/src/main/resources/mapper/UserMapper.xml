@@ -4,19 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.crm.mapper.UserMapper">
 
-    <insert id="addUser">
-        insert into user (uid,password,uphone) values (#{uid},#{password},#{uphone})
+    <insert id="addUser"  useGeneratedKeys="true">
+        insert into user (username,password,uphone) values (#{username},#{password},#{uphone})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
     <select id="login" resultType="com.crm.beans.User">
         select * from user where 1=1
-        <if test="_parameter !=null">
-            and uid = #{uid}
+        <if test="username !=null and username !=''">
+            and username = #{username}
         </if>
     </select>
 
     <select id="getUserByUid" resultType="java.lang.Boolean">
         <!--  返回1代表true  返回0代表false      -->
-        <![CDATA[ select count(id) from user where uid=#{uid} ]]>
+        <![CDATA[ select count(id) from user where username=#{username} ]]>
     </select>
 
     <select id="getAllUser" resultType="com.crm.beans.User">
@@ -24,26 +27,26 @@
         <if test="uphone!= null and uphone !=''">
             and uphone like '%${uphone}%'
         </if>
-        <if test="uid !=null and uid !=''">
-            and uid like '%${uid}%'
+        <if test="username !=null and username !=''">
+            and username like '%${username}%'
         </if>
     </select>
 
     <update id="restPassword">
-        update user set password =#{newpassword} where uid =#{uid}
+        update user set password =#{newpassword} where username =#{username}
     </update>
     
     <update id="updateuserInfo">
-        update user set uphone =#{uphone} where uid =#{uid}
+        update user set uphone =#{uphone} where username =#{username}
     </update>
 
     <!--判断是否已经进行实名认证-->
     <select id="selectRealName" resultType="com.crm.beans.User">
-        select realname_flag from user where uid=#{uid}
+        select realname_flag from user where username=#{username}
     </select>
 
     <!--    实名认证后,向user表的realName中写入UserInfo的id-->
     <insert id="setRealNameFlag">
-        insert into user (realname_flag) values (#{uid})
+        insert into user (realname_flag) values (#{username})
     </insert>
 </mapper>
