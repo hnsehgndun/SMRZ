@@ -10,7 +10,7 @@
     </insert>
 
     <select id="getAllWorkAttendance" resultType="com.crm.beans.WorkAttendance">
-        SELECT a.* FROM work_attendance AS a LEFT JOIN USER AS b ON a.user_id =b.id where 1=1
+        SELECT a.*,b.uphone FROM work_attendance AS a LEFT JOIN USER AS b ON a.user_id =b.id where 1=1
         <if test="uphone != null and uphone !=''">
             and b.uphone =#{uphone}
         </if>
