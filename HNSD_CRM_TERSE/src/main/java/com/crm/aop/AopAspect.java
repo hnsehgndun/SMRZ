@@ -25,10 +25,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-
 @Aspect
 @Component
 public class AopAspect {
+
     @Autowired
     private OperationLogService operationLogService;
     /**

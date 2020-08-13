@@ -6,6 +6,7 @@ import com.crm.enums.OperationType;
 import com.crm.enums.OperationUnit;
 import com.crm.mapper.UserMapper;
 import com.crm.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,19 +41,24 @@ public class UserServiceImpl implements UserService {
 
     @MyLogAnnonation(detail = "获取所有用户",level = 1,operationUnit = OperationUnit.USER,operationType = OperationType.SELECT)
     @Override
-    public List<User> getAllUser(String uphone, String uid) {
-        return userMapper.getAllUser(uphone,uid);
+    public List<User> getAllUser(String uphone, String username) {
+        return userMapper.getAllUser(uphone,username);
     }
 
     @MyLogAnnonation(detail = "重置密码",level = 1,operationUnit = OperationUnit.USER,operationType = OperationType.UPDATE)
     @Override
-    public boolean restPassword(String uid, String newpassword) {
-        return userMapper.restPassword(uid,newpassword);
+    public boolean restPassword(String username, String newpassword) {
+        return userMapper.restPassword(username,newpassword);
     }
 
     @MyLogAnnonation(detail = "更新用户个人信息",level = 1,operationUnit = OperationUnit.USER,operationType = OperationType.UPDATE)
     @Override
-    public boolean updateuserInfo(String uid,String uphone) {
-        return userMapper.updateuserInfo(uid,uphone);
+    public boolean updateuserInfo(String username,String uphone) {
+        return userMapper.updateuserInfo(username,uphone);
+    }
+
+    @Override
+    public boolean updateUserinfoId(Integer userInfoId, String username) {
+        return userMapper.updateUserinfoId(userInfoId,username);
     }
 }

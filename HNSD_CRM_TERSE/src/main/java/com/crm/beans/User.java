@@ -10,17 +10,17 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String uphone;
-    private Integer realnameFlag;
+    private Integer userinfoId;
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String uphone, Integer realnameFlag) {
+    public User(Integer id, String username, String password, String uphone, Integer userinfoId) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.uphone = uphone;
-        this.realnameFlag = realnameFlag;
+        this.userinfoId = userinfoId;
     }
 
     public Integer getId() {
@@ -55,12 +55,12 @@ public class User implements Serializable {
         this.uphone = uphone;
     }
 
-    public Integer getRealnameFlag() {
-        return realnameFlag;
+    public Integer getUserinfoId() {
+        return userinfoId;
     }
 
-    public void setRealnameFlag(Integer realnameFlag) {
-        this.realnameFlag = realnameFlag;
+    public void setUserinfoId(Integer userinfoId) {
+        this.userinfoId = userinfoId;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", uphone='" + uphone + '\'' +
-                ", realnameFlag=" + realnameFlag +
+                ", userinfoId=" + userinfoId +
                 '}';
     }
 }

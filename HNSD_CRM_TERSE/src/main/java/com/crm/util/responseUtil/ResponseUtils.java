@@ -48,8 +48,8 @@ public class ResponseUtils {
         return jsonResponse;
     }
     //分页返回
-    public static <T> JSONResponse<T> successPage(ResSuccess resSuccess, T data,long total) {
-        JSONResponse jsonResponse = new JSONResponse();
+    public static <T> JSONResponsePage successPage(ResSuccess resSuccess, T data,long total) {
+        JSONResponsePage jsonResponse = new JSONResponsePage();
         jsonResponse.setSuccess(true);
         jsonResponse.setData(data);
         jsonResponse.setCode(resSuccess.getCode());

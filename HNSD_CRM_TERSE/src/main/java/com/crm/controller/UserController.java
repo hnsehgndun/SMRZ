@@ -114,7 +114,6 @@ public class UserController {
     @ApiOperation(value = "获取所有用户")
     @GetMapping("/users")
     public JSONResponse getAllUser(@RequestParam(value = "uphone",required = false) String uphone,@RequestParam(value = "username",required = false)String username,@RequestParam(value = "pagesize",required = true)int pagesize,@RequestParam(value = "limit",required = true)int limit){
-        //  创建Page对象，将page，limit参数传入，必须位于从数据库查询数据的语句之前，否则不生效
         PageHelper.startPage(pagesize, limit);
         //  ASC是根据id 正向排序，DESC是反向排序
         PageHelper.orderBy("id ASC");

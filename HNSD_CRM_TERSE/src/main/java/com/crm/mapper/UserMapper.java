@@ -28,8 +28,6 @@ public interface UserMapper {
     //修改个人信息  暂时只有一个手机号可以修改
     boolean updateuserInfo(@Param("username") String username,@Param("uphone") String uphone);
 
-
-
-    //把userinfo表的id放入user表的realName_flag字段中
-    boolean setRealNameFlag(@Param("userInfoId") Integer userInfoId,@Param("username") String username);
+    //把userinfo表的id放入user表的userinfo_id字段中
+    boolean updateUserinfoId(@Param("userInfoId") Integer userInfoId,@Param("username") String username);
 }
