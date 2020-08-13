@@ -3,6 +3,8 @@ package com.crm.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.baidu.aip.face.AipFace;
 import com.baidu.aip.face.MatchRequest;
+import com.crm.beans.Image;
+import com.crm.beans.User;
 import com.crm.config.MakeApiFace;
 import com.crm.util.JsonUtils;
 import com.crm.util.responseUtil.JSONResponse;
@@ -10,20 +12,24 @@ import com.crm.util.responseUtil.ResSuccess;
 import com.crm.util.responseUtil.ResponseUtils;
 import com.crm.util.responseUtil.SystemErrors;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import com.crm.util.faceUtil.FaceUntilAPI;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 人脸识别
  */
 
+@CrossOrigin
 @RestController
-@RequestMapping("/face")
+@RequestMapping("face")
 public class FaceController{
+
+
     /**
      * 人脸识别
      * @param
@@ -31,11 +37,16 @@ public class FaceController{
      */
     @ApiOperation(value = "人脸检测接口")
     @PostMapping("/detect")
-    public JSONResponse detect(@RequestBody HashMap<String,String> param){
-        String image = param.get("image");
-        if(StringUtils.isEmpty(image)){
-            return ResponseUtils.error(SystemErrors.SYS_308);
+    public JSONResponse detect(@RequestBody String image){
+        if(!JsonUtils.isjson(image)){
+            return ResponseUtils.error(SystemErrors.SYS_307);
         }
+        JSONObject json = JSONObject.parseObject(image);
+        image = json.getString("image");
+        if(image == null){
+            ResponseUtils.error(SystemErrors.SYS_308);
+        }
+
         // 初始化一个AipFace
         AipFace client =  MakeApiFace.getAipFace();
 
@@ -62,32 +73,85 @@ public class FaceController{
 
 
     /**
-     * 对比
+     * 人脸采集
      * @param
      * @return
+     * 活体检测-人脸注册
      */
     @ApiOperation(value = "人脸对比接口")
-    @PostMapping("/match")
-    public JSONResponse match(@RequestBody HashMap<String,String> param){
+    @RequestMapping("/match")
+    public JSONResponse match(@RequestBody Image imageU, @RequestBody Image imagec, HttpServletRequest request){
         // 初始化一个AipFace
+        org.json.JSONObject res = null;
        AipFace client = MakeApiFace.getAipFace();
-        String image1 = param.get("image1");
-        String image2 = param.get("image2");
-        if(StringUtils.isEmpty(image1) && StringUtils.isEmpty(image2)){
-            return ResponseUtils.error(SystemErrors.SYS_308);
+        if(imageU==null&&imagec == null){
+            return ResponseUtils.error(SystemErrors.SYS_420);
         }
+        //调用工具类进行活体检测
+        boolean faceverfy = FaceUntilAPI.faceverify(client,imageU,imagec);
+        if (faceverfy){//活体
+            //进行人脸对比
+            //获取用户ID
+            User user = (User)request.getSession().getAttribute("loginUser");
+           // user.get
+            //把图片和数据库重的实名认证身份证进行对比
 
-        // image1/image2也可以为url或facetoken, 相应的imageType参数需要与之对应。
-        MatchRequest req1 = new MatchRequest(image1, "BASE64");
-        MatchRequest req2 = new MatchRequest(image2, "BASE64");
+
+            res = FaceUntilAPI.addUser(client,user,imageU);
+            System.out.println(res);
+        }
+        return  ResponseUtils.success(ResSuccess.SYS_200, JSONObject.parseObject(res.toString()));
+
+     /*   // image1/image2也可以为url或facetoken, 相应的imageType参数需要与之对应。
+        MatchRequest req1 = new MatchRequest(imageU.getImage(), imageU.getImageType());
+
+        *//*MatchRequest req2 = new MatchRequest(image2, "BASE64");*//*
         ArrayList<MatchRequest> requests = new ArrayList<MatchRequest>();
         requests.add(req1);
-        requests.add(req2);
+       *//* requests.add(req2);*//*
 
-        org.json.JSONObject res = client.match(requests);
-        return  ResponseUtils.success(ResSuccess.SYS_200, JSONObject.parseObject(res.toString()));
+        org.json.JSONObject res = client.match(requests);*/
+
     }
 
+    /**
+     * 人脸登陆
+     * @param
+     * @return
+     * 活体检测-人脸搜索-人脸对比-
+     */
+    @ApiOperation(value = "人脸登陆")
+    @RequestMapping("/facelogin")
+    public JSONResponse facelogin(@RequestBody Image imageU, @RequestBody Image imagec, HttpServletRequest request){
+        // 初始化一个AipFace
+        org.json.JSONObject res = null;
+        AipFace client = MakeApiFace.getAipFace();
+        if(imageU==null&&imagec == null){
+            return ResponseUtils.error(SystemErrors.SYS_420);
+        }
+        //调用工具类进行活体检测
+        boolean faceverfy = FaceUntilAPI.faceverify(client,imageU,imagec);
+        if (faceverfy){//活体
+            //进行人脸对比
+            //获取用户ID
+            User user = (User)request.getSession().getAttribute("loginUser");
+
+            res = FaceUntilAPI.addUser(client,user,imageU);
+            System.out.println(res);
+        }
+        return  ResponseUtils.success(ResSuccess.SYS_200, JSONObject.parseObject(res.toString()));
+
+     /*   // image1/image2也可以为url或facetoken, 相应的imageType参数需要与之对应。
+        MatchRequest req1 = new MatchRequest(imageU.getImage(), imageU.getImageType());
+
+        *//*MatchRequest req2 = new MatchRequest(image2, "BASE64");*//*
+        ArrayList<MatchRequest> requests = new ArrayList<MatchRequest>();
+        requests.add(req1);
+       *//* requests.add(req2);*//*
+
+        org.json.JSONObject res = client.match(requests);*/
+
+    }
 
 
 
