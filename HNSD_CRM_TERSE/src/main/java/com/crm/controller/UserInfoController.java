@@ -43,9 +43,9 @@ public class UserInfoController {
                 if (result) {
                     return ResponseUtils.success(ResSuccess.SYS_200);
                 }
-                return ResponseUtils.error("500", "认证过程失败,身份证号已经存在");
+                return ResponseUtils.error(SystemErrors.SYS_314);
             }else{
-                return ResponseUtils.error("500", "身份证号格式错误");
+                return ResponseUtils.error(SystemErrors.SYS_315);
             }
         } else {
             return ResponseUtils.error(SystemErrors.SYS_424);

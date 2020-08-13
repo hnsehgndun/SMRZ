@@ -10,21 +10,20 @@ import com.crm.util.responseUtil.ResSuccess;
 import com.crm.util.responseUtil.ResponseUtils;
 import com.crm.util.responseUtil.SystemErrors;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 人脸识别
  */
 
-@CrossOrigin
 @RestController
-@RequestMapping("face")
+@RequestMapping("/face")
 public class FaceController{
-
-
     /**
      * 人脸识别
      * @param
@@ -32,16 +31,11 @@ public class FaceController{
      */
     @ApiOperation(value = "人脸检测接口")
     @PostMapping("/detect")
-    public JSONResponse detect(@RequestBody String image){
-        if(!JsonUtils.isjson(image)){
-            return ResponseUtils.error(SystemErrors.SYS_307);
+    public JSONResponse detect(@RequestBody HashMap<String,String> param){
+        String image = param.get("image");
+        if(StringUtils.isEmpty(image)){
+            return ResponseUtils.error(SystemErrors.SYS_308);
         }
-        JSONObject json = JSONObject.parseObject(image);
-        image = json.getString("image");
-        if(image == null){
-            ResponseUtils.error(SystemErrors.SYS_308);
-        }
-
         // 初始化一个AipFace
         AipFace client =  MakeApiFace.getAipFace();
 
@@ -74,17 +68,12 @@ public class FaceController{
      */
     @ApiOperation(value = "人脸对比接口")
     @PostMapping("/match")
-    public JSONResponse match(@RequestBody String image){
+    public JSONResponse match(@RequestBody HashMap<String,String> param){
         // 初始化一个AipFace
        AipFace client = MakeApiFace.getAipFace();
-
-        if(!JsonUtils.isjson(image)){
-            return ResponseUtils.error(SystemErrors.SYS_307);
-        }
-        JSONObject json = JSONObject.parseObject(image);
-        String image1 = json.getString("image1");
-        String image2 = json.getString("image2");
-        if(image1 == null || image2 == null){
+        String image1 = param.get("image1");
+        String image2 = param.get("image2");
+        if(StringUtils.isEmpty(image1) && StringUtils.isEmpty(image2)){
             return ResponseUtils.error(SystemErrors.SYS_308);
         }
 
