@@ -49,10 +49,10 @@
     <select id="getAllUser" resultType="com.crm.beans.User">
         select * from user where 1=1
         <if test="uphone!= null and uphone !=''">
-            and uphone like '%${uphone}%'
+            and uphone like CONCAT('%',#{uphone,jdbcType=VARCHAR},'%')
         </if>
         <if test="username !=null and username !=''">
-            and username like '%${username}%'
+            and username like CONCAT('%',#{username,jdbcType=VARCHAR},'%')
         </if>
     </select>
 
@@ -64,18 +64,15 @@
         update user set uphone =#{uphone} where username =#{username}
     </update>
 
-
-
     <!--    实名认证后,向user表的realName中写入UserInfo的id-->
-    <update id="setRealNameFlag">
+    <update id="updateUserinfoId">
         update user set
         <if test="userInfoId !=null and userInfoId != ''">
-            realname_flag=#{userInfoId}
+            userinfo_id=#{userInfoId}
         </if>
         where
         <if test="username !=null and username != ''">
             username=#{username}
         </if>
-
     </update>
 </mapper>
