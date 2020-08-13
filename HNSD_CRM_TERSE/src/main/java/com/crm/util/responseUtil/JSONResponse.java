@@ -15,8 +15,14 @@ public class JSONResponse<T> implements Serializable {
 
     private boolean success;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    private Long total;
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
     }
 
     public String getCode() {
@@ -59,5 +65,13 @@ public class JSONResponse<T> implements Serializable {
         this.message = message;
         this.data = data;
         this.success = success;
+    }
+
+    public JSONResponse(String code, String message, T data, boolean success, Long total) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+        this.success = success;
+        this.total = total;
     }
 }
