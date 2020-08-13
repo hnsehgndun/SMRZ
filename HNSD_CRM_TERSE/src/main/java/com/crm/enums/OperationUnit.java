@@ -1,13 +1,13 @@
 package com.crm.enums;
 
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-
+/**
+ * AOP日志  被操作的单元
+ */
 public enum OperationUnit {
-    /**
-     * 被操作的单元
-     */
+    //user对象
     USER("User"),
+    //考勤对象
     WORKATTENDANCE("WorkAttendance");
 
     private String value;

@@ -12,6 +12,9 @@ import com.crm.util.responseUtil.JSONResponse;
 import com.crm.util.responseUtil.ResSuccess;
 import com.crm.util.responseUtil.ResponseUtils;
 import com.crm.util.responseUtil.SystemErrors;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,9 +113,16 @@ public class UserController {
     //个人用户信息列表
     @ApiOperation(value = "获取所有用户")
     @GetMapping("/users")
-    public JSONResponse getAllUser(@RequestParam(value = "uphone",required = false) String uphone,@RequestParam(value = "username",required = false)String username){
-        List<User> alluser = userService.getAllUser(uphone, username);
-        return ResponseUtils.success(ResSuccess.SYS_200,alluser);
+    public JSONResponse getAllUser(@RequestParam(value = "uphone",required = false) String uphone,@RequestParam(value = "username",required = false)String username,@RequestParam(value = "pagesize",required = true)int pagesize,@RequestParam(value = "limit",required = true)int limit){
+        PageHelper.startPage(pagesize, limit);
+        //  ASC是根据id 正向排序，DESC是反向排序
+        PageHelper.orderBy("id ASC");
+        // 从数据库查询，这里返回的的allUser就已经分页成功了
+        List<User> allUser = userService.getAllUser(uphone,username);
+        PageInfo<User> pageData = new PageInfo<>(allUser);
+        // 获取查询记录总数，必须位于从数据库查询数据的语句之后，否则不生效
+        long total = pageData.getTotal();
+        return ResponseUtils.successPage(ResSuccess.SYS_200,allUser,total);
     }
 
     @ApiOperation(value = "校验旧密码")

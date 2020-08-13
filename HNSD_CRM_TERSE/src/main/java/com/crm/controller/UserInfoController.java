@@ -34,8 +34,8 @@ public class UserInfoController {
         User user = (User) session.getAttribute("loginUser");
         //获取账号名usernaem
         String username = user.getUsername();
-        //判断realnameFlag认证标志位是否为空,为空则可以认证
-        if (user.getRealnameFlag() == null) {
+        //判断userInfoid认证标志位是否为空,为空则可以认证
+        if (user.getUserinfoId() == null) {
             String regex = "(^\\d{18}$)|(^\\d{15}$)";
             String idCard = userInfo.getIdCard();
             if(idCard.matches(regex)){

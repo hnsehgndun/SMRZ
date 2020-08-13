@@ -15,10 +15,6 @@ public class JSONResponse<T> implements Serializable {
 
     private boolean success;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     public String getCode() {
         return code;
     }
@@ -60,4 +56,5 @@ public class JSONResponse<T> implements Serializable {
         this.data = data;
         this.success = success;
     }
+
 }

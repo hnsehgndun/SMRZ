@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.crm.mapper.UserMapper">
 <!--    注册账号-->
-    <insert id="addUser" parameterType="com.crm.beans.User">
+    <insert id="addUser" parameterType="com.crm.beans.User" useGeneratedKeys="true">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null">
@@ -28,6 +28,9 @@
                 #{uphone,jdbcType=VARCHAR}
             </if>
         </trim>
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
 <!--    登录-->
@@ -46,10 +49,10 @@
     <select id="getAllUser" resultType="com.crm.beans.User">
         select * from user where 1=1
         <if test="uphone!= null and uphone !=''">
-            and uphone like '%${uphone}%'
+            and uphone like CONCAT('%',#{uphone,jdbcType=VARCHAR},'%')
         </if>
         <if test="username !=null and username !=''">
-            and username like '%${username}%'
+            and username like CONCAT('%',#{username,jdbcType=VARCHAR},'%')
         </if>
     </select>
 
@@ -61,18 +64,15 @@
         update user set uphone =#{uphone} where username =#{username}
     </update>
 
-
-
     <!--    实名认证后,向user表的realName中写入UserInfo的id-->
-    <update id="setRealNameFlag">
+    <update id="updateUserinfoId">
         update user set
         <if test="userInfoId !=null and userInfoId != ''">
-            realname_flag=#{userInfoId}
+            userinfo_id=#{userInfoId}
         </if>
         where
         <if test="username !=null and username != ''">
             username=#{username}
         </if>
-
     </update>
 </mapper>

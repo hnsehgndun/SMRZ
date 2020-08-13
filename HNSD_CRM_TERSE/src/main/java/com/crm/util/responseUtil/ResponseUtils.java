@@ -47,6 +47,16 @@ public class ResponseUtils {
         jsonResponse.setMessage(message);
         return jsonResponse;
     }
+    //分页返回
+    public static <T> JSONResponsePage successPage(ResSuccess resSuccess, T data,long total) {
+        JSONResponsePage jsonResponse = new JSONResponsePage();
+        jsonResponse.setSuccess(true);
+        jsonResponse.setData(data);
+        jsonResponse.setCode(resSuccess.getCode());
+        jsonResponse.setMessage(resSuccess.getMessage());
+        jsonResponse.setTotal(total);
+        return jsonResponse;
+    }
 
     public static JSONResponse error(SystemErrors resError) {
         return error((SystemErrors) resError, (Object) null);
