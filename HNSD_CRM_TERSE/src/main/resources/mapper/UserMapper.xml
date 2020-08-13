@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.crm.mapper.UserMapper">
 <!--    注册账号-->
-    <insert id="addUser" parameterType="com.crm.beans.User">
+    <insert id="addUser" parameterType="com.crm.beans.User" useGeneratedKeys="true">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null">
@@ -28,6 +28,9 @@
                 #{uphone,jdbcType=VARCHAR}
             </if>
         </trim>
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
 <!--    登录-->
