@@ -16,7 +16,7 @@
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
           <factory-entry name="Entities" />
-          <factory-entry name="TEST_1" />
+          <factory-entry name="HNSD_CRM_TERSE" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

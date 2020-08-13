@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.code</groupId>
-  <artifactId>TEST_1</artifactId>
+  <artifactId>HNSD_CRM_TERSE</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>TEST_1 Maven Webapp</name>
+  <name>HNSD_CRM_TERSE Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -219,7 +219,7 @@
   </dependencies>
 
   <build>
-    <finalName>TEST_1</finalName>
+    <finalName>HNSD_CRM_TERSE</finalName>
     <pluginManagement>
       <plugins>
         <!--tomcat插件-->
