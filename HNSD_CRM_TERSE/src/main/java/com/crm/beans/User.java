@@ -1,7 +1,5 @@
 package com.crm.beans;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 
 
