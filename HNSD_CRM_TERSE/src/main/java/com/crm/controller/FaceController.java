@@ -12,6 +12,7 @@ import com.crm.util.responseUtil.ResSuccess;
 import com.crm.util.responseUtil.ResponseUtils;
 import com.crm.util.responseUtil.SystemErrors;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import com.crm.util.faceUtil.FaceUntilAPI;
 
@@ -37,16 +38,11 @@ public class FaceController{
      */
     @ApiOperation(value = "人脸检测接口")
     @PostMapping("/detect")
-    public JSONResponse detect(@RequestBody String image){
-        if(!JsonUtils.isjson(image)){
-            return ResponseUtils.error(SystemErrors.SYS_307);
-        }
-        JSONObject json = JSONObject.parseObject(image);
-        image = json.getString("image");
-        if(image == null){
+    public JSONResponse detect(@RequestBody HashMap<String,String> param){
+        String image = param.get("image");
+        if(StringUtils.isEmpty(image)){
             ResponseUtils.error(SystemErrors.SYS_308);
         }
-
         // 初始化一个AipFace
         AipFace client =  MakeApiFace.getAipFace();
 
