@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="TEST_1.war">
+    <root id="archive" name="HNSD_CRM_TERSE.war">
       <element id="artifact" artifact-name="TEST_1:war exploded" />
     </root>
   </artifact>

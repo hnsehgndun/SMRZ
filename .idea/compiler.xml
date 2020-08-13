@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TEST_1" />
+        <module name="HNSD_CRM_TERSE" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="TEST_1" target="1.8" />
+      <module name="HNSD_CRM_TERSE" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
