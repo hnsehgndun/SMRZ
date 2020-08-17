@@ -2,7 +2,6 @@ package com.crm.controller;
 
 import com.crm.beans.User;
 import com.crm.beans.UserOperationRecord;
-import com.crm.miaodiyun.IndustrySMS;
 import com.crm.service.UserOperationRecordService;
 import com.crm.service.UserService;
 import com.crm.util.SpecialCharUtil;
@@ -12,25 +11,28 @@ import com.crm.util.responseUtil.JSONResponse;
 import com.crm.util.responseUtil.ResSuccess;
 import com.crm.util.responseUtil.ResponseUtils;
 import com.crm.util.responseUtil.SystemErrors;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import io.swagger.annotations.*;
-import javafx.geometry.Pos;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Api(value = "系统用户接口")
 @RequestMapping("/user")
 @RestController
-public class UserController {
+public class UserController implements Cloneable{
+
     @Autowired
     private UserService userService;
 

@@ -18,4 +18,6 @@ public class MyConfig extends WebMvcConfigurationSupport {
     public PageHelper getPageHelper(){
         return new PageHelper();
     }
+
+
 }

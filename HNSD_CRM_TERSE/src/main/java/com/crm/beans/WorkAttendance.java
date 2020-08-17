@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class WorkAttendance implements Serializable {
+    private static final long serialVersionUID = 1375030762489891236L;
     private Integer id;
     private Integer userId;
     private Integer workFlag;

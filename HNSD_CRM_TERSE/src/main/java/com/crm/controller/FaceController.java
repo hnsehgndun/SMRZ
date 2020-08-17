@@ -2,11 +2,10 @@ package com.crm.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baidu.aip.face.AipFace;
-import com.baidu.aip.face.MatchRequest;
 import com.crm.beans.Image;
 import com.crm.beans.User;
 import com.crm.config.MakeApiFace;
-import com.crm.util.JsonUtils;
+import com.crm.util.faceUtil.FaceUntilAPI;
 import com.crm.util.responseUtil.JSONResponse;
 import com.crm.util.responseUtil.ResSuccess;
 import com.crm.util.responseUtil.ResponseUtils;
@@ -14,11 +13,8 @@ import com.crm.util.responseUtil.SystemErrors;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import com.crm.util.faceUtil.FaceUntilAPI;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import java.util.HashMap;
 
 /**
