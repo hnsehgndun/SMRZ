@@ -82,7 +82,8 @@ public class NaturalVillageController {
             // 参数完整不重复
             Boolean flag = ValidatorUtil.isLongitude(naturalVillage.getLongitude());
             if(!flag){
-                mess += "经度longitude数值格式不正确,";
+                // longitude
+                mess += "经度数值格式不正确,";
             }
         }
 
