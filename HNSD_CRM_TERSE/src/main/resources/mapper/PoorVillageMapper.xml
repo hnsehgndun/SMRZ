@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.mapper.PoorVillageMapper">
+  <resultMap id="BaseResultMap" type="com.crm.beans.PoorVillage">
+
+    <id column="village_id" jdbcType="INTEGER" property="villageId" />
+    <result column="county_id" jdbcType="INTEGER" property="countyId" />
+    <result column="natural_village_id" jdbcType="INTEGER" property="naturalVillageId" />
+    <result column="v_admin_id" jdbcType="INTEGER" property="vAdminId" />
+    <result column="v_property" jdbcType="TINYINT" property="vProperty" />
+    <result column="v_develop" jdbcType="TINYINT" property="vDevelop" />
+    <result column="v_terrain" jdbcType="TINYINT" property="vTerrain" />
+    <result column="v_party_num" jdbcType="INTEGER" property="vPartyNum" />
+    <result column="v_office" jdbcType="INTEGER" property="vOffice" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="re_audi_syle" jdbcType="TINYINT" property="reAudiSyle" />
+    <result column="re_audit_status" jdbcType="TINYINT" property="reAuditStatus" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="update_user_id" jdbcType="INTEGER" property="updateUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    village_id, county_id, natural_village_id, v_admin_id, v_property, v_develop, v_terrain,
+    v_party_num, v_office, status, re_audi_syle, re_audit_status, create_user_id, update_user_id,
+    create_time, update_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poor_village
+    where village_id = #{villageId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from poor_village
+    where village_id = #{villageId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.crm.beans.PoorVillage">
+    insert into poor_village (village_id, county_id, natural_village_id,
+    v_admin_id, v_property, v_develop,
+    v_terrain, v_party_num, v_office,
+    status, re_audi_syle, re_audit_status,
+    create_user_id, update_user_id, create_time,
+    update_time)
+    values (#{villageId,jdbcType=INTEGER}, #{countyId,jdbcType=INTEGER}, #{naturalVillageId,jdbcType=INTEGER},
+    #{vAdminId,jdbcType=INTEGER}, #{vProperty,jdbcType=TINYINT}, #{vDevelop,jdbcType=TINYINT},
+    #{vTerrain,jdbcType=TINYINT}, #{vPartyNum,jdbcType=INTEGER}, #{vOffice,jdbcType=INTEGER},
+    #{status,jdbcType=TINYINT}, #{reAudiSyle,jdbcType=TINYINT}, #{reAuditStatus,jdbcType=TINYINT},
+    #{createUserId,jdbcType=INTEGER}, #{updateUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+    #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.crm.beans.PoorVillage">
+    insert into poor_village
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="villageId != null">
+        village_id,
+      </if>
+      <if test="countyId != null">
+        county_id,
+      </if>
+      <if test="naturalVillageId != null">
+        natural_village_id,
+      </if>
+      <if test="vAdminId != null">
+        v_admin_id,
+      </if>
+      <if test="vProperty != null">
+        v_property,
+      </if>
+      <if test="vDevelop != null">
+        v_develop,
+      </if>
+      <if test="vTerrain != null">
+        v_terrain,
+      </if>
+      <if test="vPartyNum != null">
+        v_party_num,
+      </if>
+      <if test="vOffice != null">
+        v_office,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="reAudiSyle != null">
+        re_audi_syle,
+      </if>
+      <if test="reAuditStatus != null">
+        re_audit_status,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="villageId != null">
+        #{villageId,jdbcType=INTEGER},
+      </if>
+      <if test="countyId != null">
+        #{countyId,jdbcType=INTEGER},
+      </if>
+      <if test="naturalVillageId != null">
+        #{naturalVillageId,jdbcType=INTEGER},
+      </if>
+      <if test="vAdminId != null">
+        #{vAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="vProperty != null">
+        #{vProperty,jdbcType=TINYINT},
+      </if>
+      <if test="vDevelop != null">
+        #{vDevelop,jdbcType=TINYINT},
+      </if>
+      <if test="vTerrain != null">
+        #{vTerrain,jdbcType=TINYINT},
+      </if>
+      <if test="vPartyNum != null">
+        #{vPartyNum,jdbcType=INTEGER},
+      </if>
+      <if test="vOffice != null">
+        #{vOffice,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="reAudiSyle != null">
+        #{reAudiSyle,jdbcType=TINYINT},
+      </if>
+      <if test="reAuditStatus != null">
+        #{reAuditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.beans.PoorVillage">
+    update poor_village
+    <set>
+      <if test="countyId != null">
+        county_id = #{countyId,jdbcType=INTEGER},
+      </if>
+      <if test="naturalVillageId != null">
+        natural_village_id = #{naturalVillageId,jdbcType=INTEGER},
+      </if>
+      <if test="vAdminId != null">
+        v_admin_id = #{vAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="vProperty != null">
+        v_property = #{vProperty,jdbcType=TINYINT},
+      </if>
+      <if test="vDevelop != null">
+        v_develop = #{vDevelop,jdbcType=TINYINT},
+      </if>
+      <if test="vTerrain != null">
+        v_terrain = #{vTerrain,jdbcType=TINYINT},
+      </if>
+      <if test="vPartyNum != null">
+        v_party_num = #{vPartyNum,jdbcType=INTEGER},
+      </if>
+      <if test="vOffice != null">
+        v_office = #{vOffice,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="reAudiSyle != null">
+        re_audi_syle = #{reAudiSyle,jdbcType=TINYINT},
+      </if>
+      <if test="reAuditStatus != null">
+        re_audit_status = #{reAuditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where village_id = #{villageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.beans.PoorVillage">
+    update poor_village
+    set county_id = #{countyId,jdbcType=INTEGER},
+      natural_village_id = #{naturalVillageId,jdbcType=INTEGER},
+      v_admin_id = #{vAdminId,jdbcType=INTEGER},
+      v_property = #{vProperty,jdbcType=TINYINT},
+      v_develop = #{vDevelop,jdbcType=TINYINT},
+      v_terrain = #{vTerrain,jdbcType=TINYINT},
+      v_party_num = #{vPartyNum,jdbcType=INTEGER},
+      v_office = #{vOffice,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      re_audi_syle = #{reAudiSyle,jdbcType=TINYINT},
+      re_audit_status = #{reAuditStatus,jdbcType=TINYINT},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where village_id = #{villageId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getPoorVillageList" parameterType="com.crm.beans.PoorVillage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from poor_village
+    <where>
+      <if test="poorVillage.countyId != null">
+        AND county_id = #{poorVillage.countyId,jdbcType=INTEGER}
+      </if>
+      <if test="poorVillage.vProperty != null">
+        AND v_property = #{poorVillage.vProperty,jdbcType=INTEGER}
+      </if>
+      <if test="poorVillage.vDevelop != null">
+        AND v_develop = #{poorVillage.vDevelop,jdbcType=TINYINT}
+      </if>
+    </where>
+    ORDER BY village_id desc
+    LIMIT #{page.pageNo},#{page.pageSize}
+  </select>
+
+  <select id="getPoorVillageListCount" parameterType="com.crm.beans.PoorVillage" resultType="java.lang.Integer">
+    select
+    count(*)
+    from poor_village
+    <where>
+      <if test="poorVillage.countyId != null">
+        AND county_id = #{poorVillage.countyId,jdbcType=INTEGER}
+      </if>
+      <if test="poorVillage.vProperty != null">
+        AND v_property = #{poorVillage.vProperty,jdbcType=INTEGER}
+      </if>
+      <if test="poorVillage.vProperty != null">
+        AND v_develop = #{poorVillage.vDevelop,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+
+</mapper>
