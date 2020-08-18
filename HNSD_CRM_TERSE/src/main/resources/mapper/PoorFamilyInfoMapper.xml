@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.mapper.PoorFamilyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.crm.beans.PoorFamilyInfo">
+    <constructor>
+      <idArg column="pf_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="town_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="holder_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="holder_tel" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pf_bank_area" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pf_bank_num" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="pf_standard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pf_property" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pf_reason" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pf_status" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pf_id, town_id, holder_name, holder_tel, pf_bank_area, pf_bank_num, pf_standard, 
+    pf_property, pf_reason, pf_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poor_family_info
+    where pf_id = #{pfId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from poor_family_info
+    where pf_id = #{pfId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.beans.PoorFamilyInfo">
+    insert into poor_family_info (pf_id, town_id, holder_name, 
+      holder_tel, pf_bank_area, pf_bank_num, 
+      pf_standard, pf_property, pf_reason, 
+      pf_status)
+    values (#{pfId,jdbcType=INTEGER}, #{townId,jdbcType=INTEGER}, #{holderName,jdbcType=VARCHAR}, 
+      #{holderTel,jdbcType=VARCHAR}, #{pfBankArea,jdbcType=VARCHAR}, #{pfBankNum,jdbcType=CHAR}, 
+      #{pfStandard,jdbcType=VARCHAR}, #{pfProperty,jdbcType=VARCHAR}, #{pfReason,jdbcType=VARCHAR}, 
+      #{pfStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.beans.PoorFamilyInfo">
+    insert into poor_family_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pfId != null">
+        pf_id,
+      </if>
+      <if test="townId != null">
+        town_id,
+      </if>
+      <if test="holderName != null">
+        holder_name,
+      </if>
+      <if test="holderTel != null">
+        holder_tel,
+      </if>
+      <if test="pfBankArea != null">
+        pf_bank_area,
+      </if>
+      <if test="pfBankNum != null">
+        pf_bank_num,
+      </if>
+      <if test="pfStandard != null">
+        pf_standard,
+      </if>
+      <if test="pfProperty != null">
+        pf_property,
+      </if>
+      <if test="pfReason != null">
+        pf_reason,
+      </if>
+      <if test="pfStatus != null">
+        pf_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pfId != null">
+        #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="townId != null">
+        #{townId,jdbcType=INTEGER},
+      </if>
+      <if test="holderName != null">
+        #{holderName,jdbcType=VARCHAR},
+      </if>
+      <if test="holderTel != null">
+        #{holderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="pfBankArea != null">
+        #{pfBankArea,jdbcType=VARCHAR},
+      </if>
+      <if test="pfBankNum != null">
+        #{pfBankNum,jdbcType=CHAR},
+      </if>
+      <if test="pfStandard != null">
+        #{pfStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="pfProperty != null">
+        #{pfProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="pfReason != null">
+        #{pfReason,jdbcType=VARCHAR},
+      </if>
+      <if test="pfStatus != null">
+        #{pfStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.beans.PoorFamilyInfo">
+    update poor_family_info
+    <set>
+      <if test="townId != null">
+        town_id = #{townId,jdbcType=INTEGER},
+      </if>
+      <if test="holderName != null">
+        holder_name = #{holderName,jdbcType=VARCHAR},
+      </if>
+      <if test="holderTel != null">
+        holder_tel = #{holderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="pfBankArea != null">
+        pf_bank_area = #{pfBankArea,jdbcType=VARCHAR},
+      </if>
+      <if test="pfBankNum != null">
+        pf_bank_num = #{pfBankNum,jdbcType=CHAR},
+      </if>
+      <if test="pfStandard != null">
+        pf_standard = #{pfStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="pfProperty != null">
+        pf_property = #{pfProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="pfReason != null">
+        pf_reason = #{pfReason,jdbcType=VARCHAR},
+      </if>
+      <if test="pfStatus != null">
+        pf_status = #{pfStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pf_id = #{pfId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.beans.PoorFamilyInfo">
+    update poor_family_info
+    set town_id = #{townId,jdbcType=INTEGER},
+      holder_name = #{holderName,jdbcType=VARCHAR},
+      holder_tel = #{holderTel,jdbcType=VARCHAR},
+      pf_bank_area = #{pfBankArea,jdbcType=VARCHAR},
+      pf_bank_num = #{pfBankNum,jdbcType=CHAR},
+      pf_standard = #{pfStandard,jdbcType=VARCHAR},
+      pf_property = #{pfProperty,jdbcType=VARCHAR},
+      pf_reason = #{pfReason,jdbcType=VARCHAR},
+      pf_status = #{pfStatus,jdbcType=VARCHAR}
+    where pf_id = #{pfId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from poor_family_info
+    limit #{start},#{size}
+  </select>
+</mapper>

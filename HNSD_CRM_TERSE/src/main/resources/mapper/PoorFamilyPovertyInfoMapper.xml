@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.mapper.PoorFamilyPovertyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.crm.beans.PoorFamilyPovertyInfo">
+    <constructor>
+      <idArg column="pfi_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pf_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="doc_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="doc_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="birth" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="relation" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="nation" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="edu_level" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="stu_status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="skills" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="emp_staus" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="wor_hours" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="health" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serviceman" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="survival" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pfi_id, pf_id, name, sex, doc_type, doc_id, password, birth, relation, nation, edu_level, 
+    stu_status, skills, emp_staus, wor_hours, health, serviceman, survival
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poor_family_poverty_info
+    where pfi_id = #{pfiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from poor_family_poverty_info
+    where pfi_id = #{pfiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.beans.PoorFamilyPovertyInfo">
+    insert into poor_family_poverty_info (pfi_id, pf_id, name, 
+      sex, doc_type, doc_id, 
+      password, birth, relation, 
+      nation, edu_level, stu_status, 
+      skills, emp_staus, wor_hours, 
+      health, serviceman, survival
+      )
+    values (#{pfiId,jdbcType=INTEGER}, #{pfId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{docType,jdbcType=VARCHAR}, #{docId,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, #{relation,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=VARCHAR}, #{eduLevel,jdbcType=VARCHAR}, #{stuStatus,jdbcType=VARCHAR}, 
+      #{skills,jdbcType=VARCHAR}, #{empStaus,jdbcType=VARCHAR}, #{worHours,jdbcType=VARCHAR}, 
+      #{health,jdbcType=VARCHAR}, #{serviceman,jdbcType=VARCHAR}, #{survival,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.beans.PoorFamilyPovertyInfo">
+    insert into poor_family_poverty_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pfiId != null">
+        pfi_id,
+      </if>
+      <if test="pfId != null">
+        pf_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="docType != null">
+        doc_type,
+      </if>
+      <if test="docId != null">
+        doc_id,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="relation != null">
+        relation,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="eduLevel != null">
+        edu_level,
+      </if>
+      <if test="stuStatus != null">
+        stu_status,
+      </if>
+      <if test="skills != null">
+        skills,
+      </if>
+      <if test="empStaus != null">
+        emp_staus,
+      </if>
+      <if test="worHours != null">
+        wor_hours,
+      </if>
+      <if test="health != null">
+        health,
+      </if>
+      <if test="serviceman != null">
+        serviceman,
+      </if>
+      <if test="survival != null">
+        survival,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pfiId != null">
+        #{pfiId,jdbcType=INTEGER},
+      </if>
+      <if test="pfId != null">
+        #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="docType != null">
+        #{docType,jdbcType=VARCHAR},
+      </if>
+      <if test="docId != null">
+        #{docId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="eduLevel != null">
+        #{eduLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="stuStatus != null">
+        #{stuStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="skills != null">
+        #{skills,jdbcType=VARCHAR},
+      </if>
+      <if test="empStaus != null">
+        #{empStaus,jdbcType=VARCHAR},
+      </if>
+      <if test="worHours != null">
+        #{worHours,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null">
+        #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceman != null">
+        #{serviceman,jdbcType=VARCHAR},
+      </if>
+      <if test="survival != null">
+        #{survival,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.beans.PoorFamilyPovertyInfo">
+    update poor_family_poverty_info
+    <set>
+      <if test="pfId != null">
+        pf_id = #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="docType != null">
+        doc_type = #{docType,jdbcType=VARCHAR},
+      </if>
+      <if test="docId != null">
+        doc_id = #{docId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        relation = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="eduLevel != null">
+        edu_level = #{eduLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="stuStatus != null">
+        stu_status = #{stuStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="skills != null">
+        skills = #{skills,jdbcType=VARCHAR},
+      </if>
+      <if test="empStaus != null">
+        emp_staus = #{empStaus,jdbcType=VARCHAR},
+      </if>
+      <if test="worHours != null">
+        wor_hours = #{worHours,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null">
+        health = #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceman != null">
+        serviceman = #{serviceman,jdbcType=VARCHAR},
+      </if>
+      <if test="survival != null">
+        survival = #{survival,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pfi_id = #{pfiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.beans.PoorFamilyPovertyInfo">
+    update poor_family_poverty_info
+    set pf_id = #{pfId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      doc_type = #{docType,jdbcType=VARCHAR},
+      doc_id = #{docId,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=VARCHAR},
+      relation = #{relation,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      edu_level = #{eduLevel,jdbcType=VARCHAR},
+      stu_status = #{stuStatus,jdbcType=VARCHAR},
+      skills = #{skills,jdbcType=VARCHAR},
+      emp_staus = #{empStaus,jdbcType=VARCHAR},
+      wor_hours = #{worHours,jdbcType=VARCHAR},
+      health = #{health,jdbcType=VARCHAR},
+      serviceman = #{serviceman,jdbcType=VARCHAR},
+      survival = #{survival,jdbcType=VARCHAR}
+    where pfi_id = #{pfiId,jdbcType=INTEGER}
+  </update>
+</mapper>

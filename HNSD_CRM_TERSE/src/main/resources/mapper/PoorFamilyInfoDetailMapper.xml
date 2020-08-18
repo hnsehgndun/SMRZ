@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.mapper.PoorFamilyInfoDetailMapper">
+  <resultMap id="BaseResultMap" type="com.crm.beans.PoorFamilyInfoDetail">
+    <constructor>
+      <idArg column="pfd_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pf_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="wage_inco" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="product_inco" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="property_inco" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="other_inco" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="annual_inco" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="product_exp" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="other_exp" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="net_inco" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="per_inco" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="till_area" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="electricity" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="farmer_cooper" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="airing_tele" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="house_area" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="danger_house" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="danger_level" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="toilet" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fuel_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pfd_id, pf_id, wage_inco, product_inco, property_inco, other_inco, annual_inco, product_exp, 
+    other_exp, net_inco, per_inco, till_area, electricity, farmer_cooper, airing_tele, 
+    house_area, danger_house, danger_level, toilet, fuel_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poor_family_info_detail
+    where pfd_id = #{pfdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from poor_family_info_detail
+    where pfd_id = #{pfdId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.beans.PoorFamilyInfoDetail">
+    insert into poor_family_info_detail (pfd_id, pf_id, wage_inco, 
+      product_inco, property_inco, other_inco, 
+      annual_inco, product_exp, other_exp, 
+      net_inco, per_inco, till_area, 
+      electricity, farmer_cooper, airing_tele, 
+      house_area, danger_house, danger_level, 
+      toilet, fuel_type)
+    values (#{pfdId,jdbcType=INTEGER}, #{pfId,jdbcType=INTEGER}, #{wageInco,jdbcType=DECIMAL}, 
+      #{productInco,jdbcType=DECIMAL}, #{propertyInco,jdbcType=DECIMAL}, #{otherInco,jdbcType=DECIMAL}, 
+      #{annualInco,jdbcType=DECIMAL}, #{productExp,jdbcType=DECIMAL}, #{otherExp,jdbcType=DECIMAL}, 
+      #{netInco,jdbcType=DECIMAL}, #{perInco,jdbcType=DECIMAL}, #{tillArea,jdbcType=DECIMAL}, 
+      #{electricity,jdbcType=VARCHAR}, #{farmerCooper,jdbcType=VARCHAR}, #{airingTele,jdbcType=VARCHAR}, 
+      #{houseArea,jdbcType=DECIMAL}, #{dangerHouse,jdbcType=VARCHAR}, #{dangerLevel,jdbcType=VARCHAR}, 
+      #{toilet,jdbcType=VARCHAR}, #{fuelType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.beans.PoorFamilyInfoDetail">
+    insert into poor_family_info_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pfdId != null">
+        pfd_id,
+      </if>
+      <if test="pfId != null">
+        pf_id,
+      </if>
+      <if test="wageInco != null">
+        wage_inco,
+      </if>
+      <if test="productInco != null">
+        product_inco,
+      </if>
+      <if test="propertyInco != null">
+        property_inco,
+      </if>
+      <if test="otherInco != null">
+        other_inco,
+      </if>
+      <if test="annualInco != null">
+        annual_inco,
+      </if>
+      <if test="productExp != null">
+        product_exp,
+      </if>
+      <if test="otherExp != null">
+        other_exp,
+      </if>
+      <if test="netInco != null">
+        net_inco,
+      </if>
+      <if test="perInco != null">
+        per_inco,
+      </if>
+      <if test="tillArea != null">
+        till_area,
+      </if>
+      <if test="electricity != null">
+        electricity,
+      </if>
+      <if test="farmerCooper != null">
+        farmer_cooper,
+      </if>
+      <if test="airingTele != null">
+        airing_tele,
+      </if>
+      <if test="houseArea != null">
+        house_area,
+      </if>
+      <if test="dangerHouse != null">
+        danger_house,
+      </if>
+      <if test="dangerLevel != null">
+        danger_level,
+      </if>
+      <if test="toilet != null">
+        toilet,
+      </if>
+      <if test="fuelType != null">
+        fuel_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pfdId != null">
+        #{pfdId,jdbcType=INTEGER},
+      </if>
+      <if test="pfId != null">
+        #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="wageInco != null">
+        #{wageInco,jdbcType=DECIMAL},
+      </if>
+      <if test="productInco != null">
+        #{productInco,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyInco != null">
+        #{propertyInco,jdbcType=DECIMAL},
+      </if>
+      <if test="otherInco != null">
+        #{otherInco,jdbcType=DECIMAL},
+      </if>
+      <if test="annualInco != null">
+        #{annualInco,jdbcType=DECIMAL},
+      </if>
+      <if test="productExp != null">
+        #{productExp,jdbcType=DECIMAL},
+      </if>
+      <if test="otherExp != null">
+        #{otherExp,jdbcType=DECIMAL},
+      </if>
+      <if test="netInco != null">
+        #{netInco,jdbcType=DECIMAL},
+      </if>
+      <if test="perInco != null">
+        #{perInco,jdbcType=DECIMAL},
+      </if>
+      <if test="tillArea != null">
+        #{tillArea,jdbcType=DECIMAL},
+      </if>
+      <if test="electricity != null">
+        #{electricity,jdbcType=VARCHAR},
+      </if>
+      <if test="farmerCooper != null">
+        #{farmerCooper,jdbcType=VARCHAR},
+      </if>
+      <if test="airingTele != null">
+        #{airingTele,jdbcType=VARCHAR},
+      </if>
+      <if test="houseArea != null">
+        #{houseArea,jdbcType=DECIMAL},
+      </if>
+      <if test="dangerHouse != null">
+        #{dangerHouse,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerLevel != null">
+        #{dangerLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="toilet != null">
+        #{toilet,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelType != null">
+        #{fuelType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.beans.PoorFamilyInfoDetail">
+    update poor_family_info_detail
+    <set>
+      <if test="pfId != null">
+        pf_id = #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="wageInco != null">
+        wage_inco = #{wageInco,jdbcType=DECIMAL},
+      </if>
+      <if test="productInco != null">
+        product_inco = #{productInco,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyInco != null">
+        property_inco = #{propertyInco,jdbcType=DECIMAL},
+      </if>
+      <if test="otherInco != null">
+        other_inco = #{otherInco,jdbcType=DECIMAL},
+      </if>
+      <if test="annualInco != null">
+        annual_inco = #{annualInco,jdbcType=DECIMAL},
+      </if>
+      <if test="productExp != null">
+        product_exp = #{productExp,jdbcType=DECIMAL},
+      </if>
+      <if test="otherExp != null">
+        other_exp = #{otherExp,jdbcType=DECIMAL},
+      </if>
+      <if test="netInco != null">
+        net_inco = #{netInco,jdbcType=DECIMAL},
+      </if>
+      <if test="perInco != null">
+        per_inco = #{perInco,jdbcType=DECIMAL},
+      </if>
+      <if test="tillArea != null">
+        till_area = #{tillArea,jdbcType=DECIMAL},
+      </if>
+      <if test="electricity != null">
+        electricity = #{electricity,jdbcType=VARCHAR},
+      </if>
+      <if test="farmerCooper != null">
+        farmer_cooper = #{farmerCooper,jdbcType=VARCHAR},
+      </if>
+      <if test="airingTele != null">
+        airing_tele = #{airingTele,jdbcType=VARCHAR},
+      </if>
+      <if test="houseArea != null">
+        house_area = #{houseArea,jdbcType=DECIMAL},
+      </if>
+      <if test="dangerHouse != null">
+        danger_house = #{dangerHouse,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerLevel != null">
+        danger_level = #{dangerLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="toilet != null">
+        toilet = #{toilet,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelType != null">
+        fuel_type = #{fuelType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pfd_id = #{pfdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.beans.PoorFamilyInfoDetail">
+    update poor_family_info_detail
+    set pf_id = #{pfId,jdbcType=INTEGER},
+      wage_inco = #{wageInco,jdbcType=DECIMAL},
+      product_inco = #{productInco,jdbcType=DECIMAL},
+      property_inco = #{propertyInco,jdbcType=DECIMAL},
+      other_inco = #{otherInco,jdbcType=DECIMAL},
+      annual_inco = #{annualInco,jdbcType=DECIMAL},
+      product_exp = #{productExp,jdbcType=DECIMAL},
+      other_exp = #{otherExp,jdbcType=DECIMAL},
+      net_inco = #{netInco,jdbcType=DECIMAL},
+      per_inco = #{perInco,jdbcType=DECIMAL},
+      till_area = #{tillArea,jdbcType=DECIMAL},
+      electricity = #{electricity,jdbcType=VARCHAR},
+      farmer_cooper = #{farmerCooper,jdbcType=VARCHAR},
+      airing_tele = #{airingTele,jdbcType=VARCHAR},
+      house_area = #{houseArea,jdbcType=DECIMAL},
+      danger_house = #{dangerHouse,jdbcType=VARCHAR},
+      danger_level = #{dangerLevel,jdbcType=VARCHAR},
+      toilet = #{toilet,jdbcType=VARCHAR},
+      fuel_type = #{fuelType,jdbcType=VARCHAR}
+    where pfd_id = #{pfdId,jdbcType=INTEGER}
+  </update>
+</mapper>

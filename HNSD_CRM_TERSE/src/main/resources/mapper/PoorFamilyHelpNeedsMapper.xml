@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.mapper.PoorFamilyHelpNeedsMapper">
+  <resultMap id="BaseResultMap" type="com.crm.beans.PoorFamilyHelpNeeds">
+    <constructor>
+      <idArg column="pfn_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pf_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="n_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="n_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="unit" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="descr" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pfn_id, pf_id, n_type, n_num, unit, descr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poor_family_help_needs
+    where pfn_id = #{pfnId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from poor_family_help_needs
+    where pfn_id = #{pfnId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.beans.PoorFamilyHelpNeeds">
+    insert into poor_family_help_needs (pfn_id, pf_id, n_type, 
+      n_num, unit, descr)
+    values (#{pfnId,jdbcType=INTEGER}, #{pfId,jdbcType=INTEGER}, #{nType,jdbcType=VARCHAR}, 
+      #{nNum,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, #{descr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.beans.PoorFamilyHelpNeeds">
+    insert into poor_family_help_needs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pfnId != null">
+        pfn_id,
+      </if>
+      <if test="pfId != null">
+        pf_id,
+      </if>
+      <if test="nType != null">
+        n_type,
+      </if>
+      <if test="nNum != null">
+        n_num,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="descr != null">
+        descr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pfnId != null">
+        #{pfnId,jdbcType=INTEGER},
+      </if>
+      <if test="pfId != null">
+        #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="nType != null">
+        #{nType,jdbcType=VARCHAR},
+      </if>
+      <if test="nNum != null">
+        #{nNum,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null">
+        #{descr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.beans.PoorFamilyHelpNeeds">
+    update poor_family_help_needs
+    <set>
+      <if test="pfId != null">
+        pf_id = #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="nType != null">
+        n_type = #{nType,jdbcType=VARCHAR},
+      </if>
+      <if test="nNum != null">
+        n_num = #{nNum,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null">
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pfn_id = #{pfnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.beans.PoorFamilyHelpNeeds">
+    update poor_family_help_needs
+    set pf_id = #{pfId,jdbcType=INTEGER},
+      n_type = #{nType,jdbcType=VARCHAR},
+      n_num = #{nNum,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR}
+    where pfn_id = #{pfnId,jdbcType=INTEGER}
+  </update>
+</mapper>

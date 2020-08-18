@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.mapper.PoorFamilyAuditInfoMapper">
+  <resultMap id="BaseResultMap" type="com.crm.beans.PoorFamilyAuditInfo">
+    <constructor>
+      <idArg column="pfa_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pf_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="audit_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="audit_status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="audit_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pfa_id, pf_id, audit_type, audit_status, create_user_id, create_time, update_user_id, 
+    update_time, audit_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poor_family_audit_info
+    where pfa_id = #{pfaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from poor_family_audit_info
+    where pfa_id = #{pfaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.beans.PoorFamilyAuditInfo">
+    insert into poor_family_audit_info (pfa_id, pf_id, audit_type, 
+      audit_status, create_user_id, create_time, 
+      update_user_id, update_time, audit_content
+      )
+    values (#{pfaId,jdbcType=INTEGER}, #{pfId,jdbcType=INTEGER}, #{auditType,jdbcType=VARCHAR}, 
+      #{auditStatus,jdbcType=VARCHAR}, #{createUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{auditContent,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.beans.PoorFamilyAuditInfo">
+    insert into poor_family_audit_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pfaId != null">
+        pfa_id,
+      </if>
+      <if test="pfId != null">
+        pf_id,
+      </if>
+      <if test="auditType != null">
+        audit_type,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="auditContent != null">
+        audit_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pfaId != null">
+        #{pfaId,jdbcType=INTEGER},
+      </if>
+      <if test="pfId != null">
+        #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="auditType != null">
+        #{auditType,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditContent != null">
+        #{auditContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.beans.PoorFamilyAuditInfo">
+    update poor_family_audit_info
+    <set>
+      <if test="pfId != null">
+        pf_id = #{pfId,jdbcType=INTEGER},
+      </if>
+      <if test="auditType != null">
+        audit_type = #{auditType,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditContent != null">
+        audit_content = #{auditContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pfa_id = #{pfaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.beans.PoorFamilyAuditInfo">
+    update poor_family_audit_info
+    set pf_id = #{pfId,jdbcType=INTEGER},
+      audit_type = #{auditType,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      audit_content = #{auditContent,jdbcType=VARCHAR}
+    where pfa_id = #{pfaId,jdbcType=INTEGER}
+  </update>
+</mapper>
