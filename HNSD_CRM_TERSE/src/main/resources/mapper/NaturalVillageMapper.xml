@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.mapper.NaturalVillageMapper">
+  <resultMap id="BaseResultMap" type="com.crm.beans.NaturalVillage">
+
+    <id column="natural_village_id" jdbcType="INTEGER" property="naturalVillageId" />
+    <result column="natural_village_code" jdbcType="VARCHAR" property="naturalVillageCode" />
+    <result column="natural_village_name" jdbcType="VARCHAR" property="naturalVillageName" />
+    <result column="natural_village_address" jdbcType="VARCHAR" property="naturalVillageAddress" />
+    <result column="total_household" jdbcType="INTEGER" property="totalHousehold" />
+    <result column="total_population" jdbcType="INTEGER" property="totalPopulation" />
+    <result column="is_concrete_road" jdbcType="BIT" property="isConcreteRoad" />
+    <result column="is_domestic_electricity" jdbcType="BIT" property="isDomesticElectricity" />
+    <result column="is_use_internet" jdbcType="BIT" property="isUseInternet" />
+    <result column="total_poor_household" jdbcType="INTEGER" property="totalPoorHousehold" />
+    <result column="total_low_income_family" jdbcType="INTEGER" property="totalLowIncomeFamily" />
+    <result column="total_insured_household" jdbcType="INTEGER" property="totalInsuredHousehold" />
+    <result column="village_chief_id" jdbcType="INTEGER" property="villageChiefId" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="update_user_id" jdbcType="INTEGER" property="updateUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+
+    natural_village_id, natural_village_code, natural_village_name, natural_village_address, 
+    total_household, total_population, is_concrete_road, is_domestic_electricity, is_use_internet, 
+    total_poor_household, total_low_income_family, total_insured_household, village_chief_id, 
+    longitude, latitude, create_user_id, update_user_id, create_time, update_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from natural_village
+    where natural_village_id = #{naturalVillageId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from natural_village
+    where natural_village_id = #{naturalVillageId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.crm.beans.NaturalVillage">
+
+    insert into natural_village (natural_village_id, natural_village_code, 
+      natural_village_name, natural_village_address, 
+      total_household, total_population, is_concrete_road, 
+      is_domestic_electricity, is_use_internet, total_poor_household, 
+      total_low_income_family, total_insured_household, 
+      village_chief_id, longitude, latitude,
+      create_user_id, update_user_id, create_time,
+      update_time)
+    values (#{naturalVillageId,jdbcType=INTEGER}, #{naturalVillageCode,jdbcType=VARCHAR},
+      #{naturalVillageName,jdbcType=VARCHAR}, #{naturalVillageAddress,jdbcType=VARCHAR},
+      #{totalHousehold,jdbcType=INTEGER}, #{totalPopulation,jdbcType=INTEGER}, #{isConcreteRoad,jdbcType=BIT},
+      #{isDomesticElectricity,jdbcType=BIT}, #{isUseInternet,jdbcType=BIT}, #{totalPoorHousehold,jdbcType=INTEGER},
+      #{totalLowIncomeFamily,jdbcType=INTEGER}, #{totalInsuredHousehold,jdbcType=INTEGER},
+      #{villageChiefId,jdbcType=INTEGER}, #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR},
+      #{createUserId,jdbcType=INTEGER}, #{updateUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.crm.beans.NaturalVillage">
+
+    insert into natural_village
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="naturalVillageId != null">
+        natural_village_id,
+      </if>
+      <if test="naturalVillageCode != null">
+        natural_village_code,
+      </if>
+      <if test="naturalVillageName != null">
+        natural_village_name,
+      </if>
+      <if test="naturalVillageAddress != null">
+        natural_village_address,
+      </if>
+      <if test="totalHousehold != null">
+        total_household,
+      </if>
+      <if test="totalPopulation != null">
+        total_population,
+      </if>
+      <if test="isConcreteRoad != null">
+        is_concrete_road,
+      </if>
+      <if test="isDomesticElectricity != null">
+        is_domestic_electricity,
+      </if>
+      <if test="isUseInternet != null">
+        is_use_internet,
+      </if>
+      <if test="totalPoorHousehold != null">
+        total_poor_household,
+      </if>
+      <if test="totalLowIncomeFamily != null">
+        total_low_income_family,
+      </if>
+      <if test="totalInsuredHousehold != null">
+        total_insured_household,
+      </if>
+      <if test="villageChiefId != null">
+        village_chief_id,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="naturalVillageId != null">
+        #{naturalVillageId,jdbcType=INTEGER},
+      </if>
+      <if test="naturalVillageCode != null">
+        #{naturalVillageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="naturalVillageName != null">
+        #{naturalVillageName,jdbcType=VARCHAR},
+      </if>
+      <if test="naturalVillageAddress != null">
+        #{naturalVillageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHousehold != null">
+        #{totalHousehold,jdbcType=INTEGER},
+      </if>
+      <if test="totalPopulation != null">
+        #{totalPopulation,jdbcType=INTEGER},
+      </if>
+      <if test="isConcreteRoad != null">
+        #{isConcreteRoad,jdbcType=BIT},
+      </if>
+      <if test="isDomesticElectricity != null">
+        #{isDomesticElectricity,jdbcType=BIT},
+      </if>
+      <if test="isUseInternet != null">
+        #{isUseInternet,jdbcType=BIT},
+      </if>
+      <if test="totalPoorHousehold != null">
+        #{totalPoorHousehold,jdbcType=INTEGER},
+      </if>
+      <if test="totalLowIncomeFamily != null">
+        #{totalLowIncomeFamily,jdbcType=INTEGER},
+      </if>
+      <if test="totalInsuredHousehold != null">
+        #{totalInsuredHousehold,jdbcType=INTEGER},
+      </if>
+      <if test="villageChiefId != null">
+        #{villageChiefId,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.beans.NaturalVillage">
+    update natural_village
+    <set>
+      <if test="naturalVillageCode != null">
+        natural_village_code = #{naturalVillageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="naturalVillageName != null">
+        natural_village_name = #{naturalVillageName,jdbcType=VARCHAR},
+      </if>
+      <if test="naturalVillageAddress != null">
+        natural_village_address = #{naturalVillageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHousehold != null">
+        total_household = #{totalHousehold,jdbcType=INTEGER},
+      </if>
+      <if test="totalPopulation != null">
+        total_population = #{totalPopulation,jdbcType=INTEGER},
+      </if>
+      <if test="isConcreteRoad != null">
+        is_concrete_road = #{isConcreteRoad,jdbcType=BIT},
+      </if>
+      <if test="isDomesticElectricity != null">
+        is_domestic_electricity = #{isDomesticElectricity,jdbcType=BIT},
+      </if>
+      <if test="isUseInternet != null">
+        is_use_internet = #{isUseInternet,jdbcType=BIT},
+      </if>
+      <if test="totalPoorHousehold != null">
+        total_poor_household = #{totalPoorHousehold,jdbcType=INTEGER},
+      </if>
+      <if test="totalLowIncomeFamily != null">
+        total_low_income_family = #{totalLowIncomeFamily,jdbcType=INTEGER},
+      </if>
+      <if test="totalInsuredHousehold != null">
+        total_insured_household = #{totalInsuredHousehold,jdbcType=INTEGER},
+      </if>
+      <if test="villageChiefId != null">
+        village_chief_id = #{villageChiefId,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where natural_village_id = #{naturalVillageId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.crm.beans.NaturalVillage">
+
+    update natural_village
+    set natural_village_code = #{naturalVillageCode,jdbcType=VARCHAR},
+      natural_village_name = #{naturalVillageName,jdbcType=VARCHAR},
+      natural_village_address = #{naturalVillageAddress,jdbcType=VARCHAR},
+      total_household = #{totalHousehold,jdbcType=INTEGER},
+      total_population = #{totalPopulation,jdbcType=INTEGER},
+      is_concrete_road = #{isConcreteRoad,jdbcType=BIT},
+      is_domestic_electricity = #{isDomesticElectricity,jdbcType=BIT},
+      is_use_internet = #{isUseInternet,jdbcType=BIT},
+      total_poor_household = #{totalPoorHousehold,jdbcType=INTEGER},
+      total_low_income_family = #{totalLowIncomeFamily,jdbcType=INTEGER},
+      total_insured_household = #{totalInsuredHousehold,jdbcType=INTEGER},
+      village_chief_id = #{villageChiefId,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where natural_village_id = #{naturalVillageId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getNaturalVillageList" parameterType="com.crm.beans.NaturalVillage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from natural_village
+    <where>
+      <if test="naturalVillage.naturalVillageId != null">
+        AND natural_village_id = #{naturalVillage.naturalVillageId,jdbcType=INTEGER}
+      </if>
+      <if test="naturalVillage.naturalVillageCode != null">
+        AND natural_village_code LIKE CONCAT('%',#{naturalVillage.naturalVillageCode},'%')
+      </if>
+      <if test="naturalVillage.naturalVillageName != null">
+        AND natural_village_name LIKE CONCAT('%',#{naturalVillage.naturalVillageName},'%')
+      </if>
+      <if test="naturalVillage.naturalVillageAddress != null">
+        AND natural_village_address LIKE CONCAT('%',#{naturalVillage.naturalVillageAddress},'%')
+      </if>
+    </where>
+    ORDER BY natural_village_id desc
+    LIMIT #{page.pageNo},#{page.pageSize}
+  </select>
+
+  <select id="getNaturalVillageListCount" parameterType="com.crm.beans.NaturalVillage" resultType="java.lang.Integer">
+    select
+    count(*)
+    from natural_village
+    <where>
+      <if test="naturalVillage.naturalVillageId != null">
+        AND natural_village_id = #{naturalVillage.naturalVillageId,jdbcType=INTEGER}
+      </if>
+      <if test="naturalVillage.naturalVillageCode != null">
+        AND natural_village_code LIKE CONCAT('%',#{naturalVillage.naturalVillageCode},'%')
+      </if>
+      <if test="naturalVillage.naturalVillageName != null">
+        AND natural_village_name LIKE CONCAT('%',#{naturalVillage.naturalVillageName},'%')
+      </if>
+      <if test="naturalVillage.naturalVillageAddress != null">
+        AND natural_village_address LIKE CONCAT('%',#{naturalVillage.naturalVillageAddress},'%')
+      </if>
+    </where>
+  </select>
+
+  <select id="checkOnlyUpdateNaturalVillageCode" parameterType="com.crm.beans.NaturalVillage" resultType="java.lang.Integer">
+    select
+    count(*)
+    from natural_village
+    <where>
+      <if test="naturalVillage.naturalVillageId != null">
+        AND natural_village_id != #{naturalVillage.naturalVillageId,jdbcType=INTEGER}
+      </if>
+      <if test="naturalVillage.naturalVillageCode != null">
+        AND natural_village_code LIKE CONCAT('%',#{naturalVillage.naturalVillageCode},'%')
+      </if>
+    </where>
+  </select>
+
+
+</mapper>

@@ -27,7 +27,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
         if (loginUser != null) {
             return true;
         }
-        logger.error("没有登陆系统就访问其他接口,被拦截了!!!");
+        logger.error(request.getRequestURL()+"没有登陆系统就访问其他接口,被拦截了!!!");
         returnJson(response, ResponseUtils.error(SystemErrors.SYS_401));
         return false;
     }

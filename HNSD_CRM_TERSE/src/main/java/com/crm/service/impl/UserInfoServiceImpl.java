@@ -34,9 +34,9 @@ public class UserInfoServiceImpl implements UserInfoService {
             //向user表中做一个标记,证明已经认证过,realNameFlag
             //获取当前插入记录的id
             int userInfoId = userInfo.getId();
-            boolean setRealNameFlagResult = userMapper.setRealNameFlag(userInfoId, username);
+            boolean setRealNameFlagResult = userMapper.updateUserinfoId(userInfoId, username);
             logger.info("update  user表的realNameFlag字段"+setRealNameFlagResult);
-            //userinfo表记录插入成功&&user表 realNameFlag 插入成功
+            //userinfo表记录插入成功&&user表 userInfoid 插入成功
             if (userInfoId != 0 && setRealNameFlagResult) {
                 return true;
             } else {

@@ -6,6 +6,7 @@ import java.util.Date;
 
 //操作记录日志
 public class UserOperationRecord implements Serializable {
+    private static final long serialVersionUID = 2682546718190823652L;
     private Integer id;
     private String username;
     private String operation;

@@ -17,7 +17,9 @@ public enum SystemErrors implements IErrors {
     SYS_310("310","非法手机号",""),
     SYS_311("311","用户密码错误",""),
     SYS_312("312","不存在用户名",""),
-    SYS_313("313","密码校验错误","");
+    SYS_313("313","密码校验错误",""),
+    SYS_314("314","认证过程失败,身份证号已经存在",""),
+    SYS_315("315","身份证号格式错误","");
 
     private String code;
     private String message;

@@ -34,8 +34,8 @@ public class UserInfoController {
         User user = (User) session.getAttribute("loginUser");
         //获取账号名usernaem
         String username = user.getUsername();
-        //判断realnameFlag认证标志位是否为空,为空则可以认证
-        if (user.getRealnameFlag() == null) {
+        //判断userInfoid认证标志位是否为空,为空则可以认证
+        if (user.getUserinfoId() == null) {
             String regex = "(^\\d{18}$)|(^\\d{15}$)";
             String idCard = userInfo.getIdCard();
             if(idCard.matches(regex)){
@@ -43,9 +43,9 @@ public class UserInfoController {
                 if (result) {
                     return ResponseUtils.success(ResSuccess.SYS_200);
                 }
-                return ResponseUtils.error("500", "认证过程失败,身份证号已经存在");
+                return ResponseUtils.error(SystemErrors.SYS_314);
             }else{
-                return ResponseUtils.error("500", "身份证号格式错误");
+                return ResponseUtils.error(SystemErrors.SYS_315);
             }
         } else {
             return ResponseUtils.error(SystemErrors.SYS_424);

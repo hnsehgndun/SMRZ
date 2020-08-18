@@ -19,6 +19,7 @@
     <context:component-scan base-package="com.crm"/>
     <!--这个配置就是springmvc帮你配置了映射器、适配处理器(称为总开关)-->
     <mvc:annotation-driven />
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
     <!--配置文件解析器-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="60000000"></property>
@@ -103,15 +104,6 @@
         <aop:pointcut expression="execution(* com.crm.service.impl.*.*(..))" id="pc"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pc"/>
     </aop:config>
-
-    <!--添加一个扫描器 只扫描@Controller-->
-    <context:component-scan base-package="com.crm" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:include-filter type="annotation"
-                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-    </context:component-scan>
-    <!-- 开启aop对类代理 -->
-    <aop:config proxy-target-class="true"/>
 
     <!--拦截器配置-->
     <mvc:interceptors>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class OperationLog implements Serializable {
+    private static final long serialVersionUID = -6933958645854756560L;
     //uuid 唯一
     private String id;
      //日志等级(可根据具体业务方法自定义等级)

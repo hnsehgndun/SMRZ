@@ -15,16 +15,6 @@ public class JSONResponse<T> implements Serializable {
 
     private boolean success;
 
-    private Long total;
-
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long total) {
-        this.total = total;
-    }
-
     public String getCode() {
         return code;
     }
@@ -67,11 +57,4 @@ public class JSONResponse<T> implements Serializable {
         this.success = success;
     }
 
-    public JSONResponse(String code, String message, T data, boolean success, Long total) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
-        this.success = success;
-        this.total = total;
-    }
 }

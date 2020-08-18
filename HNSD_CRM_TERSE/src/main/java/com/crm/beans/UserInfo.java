@@ -9,6 +9,7 @@ import java.util.Date;
  * 用户信息
  */
 public class UserInfo implements Serializable {
+    private static final long serialVersionUID = -3678836526687916977L;
     //主键
     private int id;
 
