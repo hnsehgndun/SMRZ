@@ -21,7 +21,7 @@ public class NaturalVillage {
     /**
      * 自然村地址
      */
-    private String naturalVillageAddress;
+    private Integer naturalVillageAddress;
 
     /**
      * 自然村总户数
@@ -129,13 +129,13 @@ public class NaturalVillage {
     }
 
 
-    public String getNaturalVillageAddress() {
+    public Integer getNaturalVillageAddress() {
         return naturalVillageAddress;
     }
 
 
-    public void setNaturalVillageAddress(String naturalVillageAddress) {
-        this.naturalVillageAddress = naturalVillageAddress == null ? null : naturalVillageAddress.trim();
+    public void setNaturalVillageAddress(Integer naturalVillageAddress) {
+        this.naturalVillageAddress = naturalVillageAddress;
     }
 
 

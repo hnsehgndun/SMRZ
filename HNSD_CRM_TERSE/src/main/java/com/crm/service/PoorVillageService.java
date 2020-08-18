@@ -9,4 +9,6 @@ public interface PoorVillageService {
 
     int insertSelective(PoorVillage poorVillage);
 
+    int updateByPrimaryKeySelective(PoorVillage record);
+
 }

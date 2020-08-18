@@ -1,6 +1,8 @@
 package com.crm.controller;
 
+import com.crm.beans.NaturalVillage;
 import com.crm.beans.PoorVillage;
+import com.crm.service.NaturalVillageService;
 import com.crm.service.PoorVillageService;
 import com.crm.util.responseUtil.*;
 import io.swagger.annotations.Api;
@@ -24,6 +26,9 @@ public class PoorVillageController {
     @Autowired
     PoorVillageService poorVillageService;
 
+    @Autowired
+    NaturalVillageService naturalVillageService;
+
     // @ApiImplicitParam(name = "userInfo", value = "用户认证信息实体类userInfo", required = true, dataType = "UserInfo")
     @ApiOperation(value="分页获取贫困村信息")
     @GetMapping("/pageList")
@@ -39,12 +44,48 @@ public class PoorVillageController {
     @ResponseBody
     public JSONResponse addPoorVillage(PoorVillage poorVillage){
         String mess = "";
+        if(StringUtils.isEmpty(poorVillage.getNaturalVillageId())){
+            // 参数不完整 naturalVillageId
+            mess += "自然村基本信息不能为空,";
+        }
         if(StringUtils.isEmpty(poorVillage.getCountyId())){
             // 参数不完整
-            mess += "贫困县编号countyId不能为空,";
+            mess += "所在县编号不能为空,";
         }
         if(!StringUtils.isEmpty(mess)){
             return ResponseUtils.error(SystemErrors.SYS_420.getCode(), mess.substring(0, mess.length()-1), null);
+        }
+        // 村负责人信息
+        NaturalVillage naturalVillage = naturalVillageService.selectByPrimaryKey(poorVillage.getNaturalVillageId());
+        if(naturalVillage != null){
+            poorVillage.setvAdminId(naturalVillage.getVillageChiefId());
+        }
+        poorVillageService.insertSelective(poorVillage);
+        return ResponseUtils.success(ResSuccess.SYS_200, null);
+    }
+
+    // 选择自然村，然后申请为贫困村 自然村的一些贫困村信息资料
+    @ApiOperation(value="修改贫困村信息")
+    @PostMapping("/updateByPrimaryKeySelective")
+    @ResponseBody
+    public JSONResponse updateByPrimaryKeySelective(PoorVillage poorVillage){
+        String mess = "";
+        if(StringUtils.isEmpty(poorVillage.getVillageId())){
+            // 参数不完整 villageId
+            mess += "主键不能为空,";
+        }
+        // 县编号不用修改了
+        if(StringUtils.isEmpty(poorVillage.getCountyId())){
+            // 参数不完整
+            mess += "所在县编号不能为空,";
+        }
+        if(!StringUtils.isEmpty(mess)){
+            return ResponseUtils.error(SystemErrors.SYS_420.getCode(), mess.substring(0, mess.length()-1), null);
+        }
+        // 村负责人信息
+        NaturalVillage naturalVillage = naturalVillageService.selectByPrimaryKey(poorVillage.getNaturalVillageId());
+        if(naturalVillage != null){
+            poorVillage.setvAdminId(naturalVillage.getVillageChiefId());
         }
         poorVillageService.insertSelective(poorVillage);
         return ResponseUtils.success(ResSuccess.SYS_200, null);

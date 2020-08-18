@@ -38,4 +38,9 @@ public class PoorVillageServiceImpl implements PoorVillageService {
         return poorVillageMapper.insertSelective(poorVillage);
     }
 
+    @Override
+    public int updateByPrimaryKeySelective(PoorVillage record) {
+        return poorVillageMapper.updateByPrimaryKeySelective(record);
+    }
+
 }

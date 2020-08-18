@@ -47,23 +47,23 @@ public class NaturalVillageController {
         User user = (User) session.getAttribute("loginUser");
 
         if(StringUtils.isEmpty(naturalVillage.getNaturalVillageCode())){
-            // 参数不完整
-            mess += "自然村编号naturalVillageCode不能为空,";
+            // 参数不完整naturalVillageCode
+            mess += "自然村编号不能为空,";
         }
 
         if(StringUtils.isEmpty(naturalVillage.getNaturalVillageName())){
-            // 参数不完整
-            mess += "自然村名称naturalVillageName不能为空,";
+            // 参数不完整naturalVillageName
+            mess += "自然村名称不能为空,";
         }
 
         if(StringUtils.isEmpty(naturalVillage.getNaturalVillageAddress())){
-            // 参数不完整
-            mess += "自然村地址naturalVillageAddress不能为空,";
+            // 参数不完整naturalVillageAddress
+            mess += "自然村地址不能为空,";
         }
 
         if(naturalVillage.getVillageChiefId()  == null){
-            // 参数不完整
-            mess += "自然村负责人villageChiefId不能为空,";
+            // 参数不完整villageChiefId
+            mess += "自然村负责人不能为空,";
         }
 
         if(!StringUtils.isEmpty(naturalVillage.getNaturalVillageCode())){
@@ -72,7 +72,8 @@ public class NaturalVillageController {
             naturalVillageParam.setNaturalVillageCode(naturalVillage.getNaturalVillageCode());
             int count = naturalVillageService.checkOnlyNaturalVillage(naturalVillageParam);
             if(count > 0){
-                mess += "自然村编号naturalVillageCode有重复值,";
+                // naturalVillageCode
+                mess += "自然村编号有重复值,";
             }
         }
 
@@ -90,7 +91,8 @@ public class NaturalVillageController {
             // 参数完整不重复
             Boolean flag = ValidatorUtil.isLatitude(naturalVillage.getLatitude());
             if(!flag){
-                mess += "纬度latitude数值格式不正确,";
+                // latitude
+                mess += "纬度数值格式不正确,";
             }
         }
 
@@ -114,8 +116,8 @@ public class NaturalVillageController {
         String mess = "";
 
         if(StringUtils.isEmpty(naturalVillage.getNaturalVillageCode())){
-            // 参数不完整
-            mess += "自然村编号naturalVillageCode不能为空,";
+            // 参数不完整 naturalVillageCode
+            mess += "自然村编号不能为空,";
         }
 
         if(!StringUtils.isEmpty(naturalVillage.getNaturalVillageCode())){
@@ -124,7 +126,8 @@ public class NaturalVillageController {
             naturalVillageParam.setNaturalVillageCode(naturalVillage.getNaturalVillageCode());
             int count = naturalVillageService.checkOnlyNaturalVillage(naturalVillageParam);
             if(count > 0){
-                mess += "自然村编号naturalVillageCode有重复值,";
+                // naturalVillageCode
+                mess += "自然村编号有重复值,";
             }
         }
         if(!StringUtils.isEmpty(mess)){
@@ -145,7 +148,8 @@ public class NaturalVillageController {
             // 参数完整不重复
             Boolean flag = ValidatorUtil.isLongitude(naturalVillage.getLongitude());
             if(!flag){
-                mess += "经度longitude数值格式不正确,";
+                // longitude
+                mess += "经度数值格式不正确,";
             }
         }
 
@@ -166,7 +170,8 @@ public class NaturalVillageController {
             // 参数完整不重复
             Boolean flag = ValidatorUtil.isLatitude(naturalVillage.getLatitude());
             if(!flag){
-                mess += "纬度latitude数值格式不正确,";
+                // latitude
+                mess += "纬度数值格式不正确,";
             }
         }
 
@@ -182,13 +187,13 @@ public class NaturalVillageController {
     public JSONResponse checkOnlyUpdateNaturalVillageCode(NaturalVillage naturalVillage){
         String mess = "";
         if(naturalVillage.getNaturalVillageId() == null){
-            // 参数不完整
-            mess += "自然村主键naturalVillageId不能为空,";
+            // 参数不完整 naturalVillageId
+            mess += "自然村主键不能为空,";
         }
 
         if(StringUtils.isEmpty(naturalVillage.getNaturalVillageCode())){
-            // 参数不完整
-            mess += "自然村编号naturalVillageCode不能为空,";
+            // 参数不完整 naturalVillageCode
+            mess += "自然村编号不能为空,";
         }
 
         if(!StringUtils.isEmpty(naturalVillage.getNaturalVillageCode())){
@@ -198,7 +203,8 @@ public class NaturalVillageController {
             naturalVillageParam.setNaturalVillageId(naturalVillage.getNaturalVillageId());
             int count = naturalVillageService.checkOnlyUpdateNaturalVillageCode(naturalVillageParam);
             if(count > 0){
-                mess += "自然村编号naturalVillageCode有重复值,";
+                // naturalVillageCode
+                mess += "自然村编号有重复值,";
             }
         }
         if(!StringUtils.isEmpty(mess)){
@@ -215,8 +221,8 @@ public class NaturalVillageController {
 
         User user = (User) session.getAttribute("loginUser");
         if(naturalVillage.getNaturalVillageId() == null){
-            // 参数不完整
-            mess += "自然村主键naturalVillageId不能为空,";
+            // 参数不完整 naturalVillageId
+            mess += "自然村主键不能为空,";
         }
 
         if(!StringUtils.isEmpty(naturalVillage.getNaturalVillageCode())){
@@ -226,7 +232,8 @@ public class NaturalVillageController {
             naturalVillageParam.setNaturalVillageCode(naturalVillage.getNaturalVillageCode());
             int count = naturalVillageService.checkOnlyUpdateNaturalVillageCode(naturalVillageParam);
             if(count > 0){
-                mess += "自然村编号naturalVillageCode有重复值,";
+                // naturalVillageCode
+                mess += "自然村编号有重复值,";
             }
         }
 
@@ -235,7 +242,8 @@ public class NaturalVillageController {
             // 参数完整不重复
             Boolean flag = ValidatorUtil.isLongitude(naturalVillage.getLongitude());
             if(!flag){
-                mess += "经度longitude数值格式不正确,";
+                // longitude
+                mess += "经度数值格式不正确,";
             }
         }
 
@@ -244,7 +252,8 @@ public class NaturalVillageController {
             // 参数完整不重复
             Boolean flag = ValidatorUtil.isLatitude(naturalVillage.getLatitude());
             if(!flag){
-                mess += "纬度latitude数值格式不正确,";
+                // latitude
+                mess += "纬度数值格式不正确,";
             }
         }
 
@@ -267,8 +276,8 @@ public class NaturalVillageController {
         String mess = "";
 
         if(naturalVillageId == null){
-            // 参数不完整
-            mess += "自然村主键naturalVillageId不能为空,";
+            // 参数不完整 naturalVillageId
+            mess += "自然村主键不能为空,";
         }
 
         if(!StringUtils.isEmpty(mess)){
@@ -285,8 +294,8 @@ public class NaturalVillageController {
         String mess = "";
 
         if(naturalVillageId == null){
-            // 参数不完整
-            mess += "自然村主键naturalVillageId不能为空,";
+            // 参数不完整 naturalVillageId
+            mess += "自然村主键不能为空,";
         }
 
         // 判断是不是有其他表的关联信息 @TODO
