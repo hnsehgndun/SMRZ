@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.mapper.VillageLivingConditionsMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.beans.VillageLivingConditions" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="natural_village_id" property="naturalVillageId" jdbcType="INTEGER" />
+    <result column="distance_to_town" property="distanceToTown" jdbcType="DOUBLE" />
+    <result column="is_concrete_road_to_town" property="isConcreteRoadToTown" jdbcType="BIT" />
+    <result column="Is_there_bus" property="isThereBus" jdbcType="BIT" />
+    <result column="total_uninstalled tap_water" property="totalUninstalledTapWater" jdbcType="INTEGER" />
+    <result column="total_dangerous_house" property="totalDangerousHouse" jdbcType="INTEGER" />
+    <result column="total_library" property="totalLibrary" jdbcType="INTEGER" />
+    <result column="total_use_internet" property="totalUseInternet" jdbcType="INTEGER" />
+    <result column="total_bathroom" property="totalBathroom" jdbcType="INTEGER" />
+    <result column="total_public_toilet" property="totalPublicToilet" jdbcType="INTEGER" />
+    <result column="total_doctor" property="totalDoctor" jdbcType="INTEGER" />
+    <result column="total_garbage_dump" property="totalGarbageDump" jdbcType="INTEGER" />
+    <result column="total_not_domestic_electricity" property="totalNotDomesticElectricity" jdbcType="INTEGER" />
+    <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+    <result column="update_user_id" property="updateUserId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, natural_village_id, distance_to_town, is_concrete_road_to_town, Is_there_bus, 
+    "total_uninstalled tap_water", total_dangerous_house, total_library, total_use_internet, 
+    total_bathroom, total_public_toilet, total_doctor, total_garbage_dump, total_not_domestic_electricity, 
+    create_user_id, update_user_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from village_living_conditions
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from village_living_conditions
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.beans.VillageLivingConditions" >
+    insert into village_living_conditions (id, natural_village_id, distance_to_town, 
+      is_concrete_road_to_town, Is_there_bus, "total_uninstalled tap_water", 
+      total_dangerous_house, total_library, total_use_internet, 
+      total_bathroom, total_public_toilet, total_doctor, 
+      total_garbage_dump, total_not_domestic_electricity, 
+      create_user_id, update_user_id, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{naturalVillageId,jdbcType=INTEGER}, #{distanceToTown,jdbcType=DOUBLE}, 
+      #{isConcreteRoadToTown,jdbcType=BIT}, #{isThereBus,jdbcType=BIT}, #{totalUninstalledTapWater,jdbcType=INTEGER}, 
+      #{totalDangerousHouse,jdbcType=INTEGER}, #{totalLibrary,jdbcType=INTEGER}, #{totalUseInternet,jdbcType=INTEGER}, 
+      #{totalBathroom,jdbcType=INTEGER}, #{totalPublicToilet,jdbcType=INTEGER}, #{totalDoctor,jdbcType=INTEGER}, 
+      #{totalGarbageDump,jdbcType=INTEGER}, #{totalNotDomesticElectricity,jdbcType=INTEGER}, 
+      #{createUserId,jdbcType=INTEGER}, #{updateUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.beans.VillageLivingConditions" >
+    insert into village_living_conditions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="naturalVillageId != null" >
+        natural_village_id,
+      </if>
+      <if test="distanceToTown != null" >
+        distance_to_town,
+      </if>
+      <if test="isConcreteRoadToTown != null" >
+        is_concrete_road_to_town,
+      </if>
+      <if test="isThereBus != null" >
+        Is_there_bus,
+      </if>
+      <if test="totalUninstalledTapWater != null" >
+        "total_uninstalled tap_water",
+      </if>
+      <if test="totalDangerousHouse != null" >
+        total_dangerous_house,
+      </if>
+      <if test="totalLibrary != null" >
+        total_library,
+      </if>
+      <if test="totalUseInternet != null" >
+        total_use_internet,
+      </if>
+      <if test="totalBathroom != null" >
+        total_bathroom,
+      </if>
+      <if test="totalPublicToilet != null" >
+        total_public_toilet,
+      </if>
+      <if test="totalDoctor != null" >
+        total_doctor,
+      </if>
+      <if test="totalGarbageDump != null" >
+        total_garbage_dump,
+      </if>
+      <if test="totalNotDomesticElectricity != null" >
+        total_not_domestic_electricity,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="naturalVillageId != null" >
+        #{naturalVillageId,jdbcType=INTEGER},
+      </if>
+      <if test="distanceToTown != null" >
+        #{distanceToTown,jdbcType=DOUBLE},
+      </if>
+      <if test="isConcreteRoadToTown != null" >
+        #{isConcreteRoadToTown,jdbcType=BIT},
+      </if>
+      <if test="isThereBus != null" >
+        #{isThereBus,jdbcType=BIT},
+      </if>
+      <if test="totalUninstalledTapWater != null" >
+        #{totalUninstalledTapWater,jdbcType=INTEGER},
+      </if>
+      <if test="totalDangerousHouse != null" >
+        #{totalDangerousHouse,jdbcType=INTEGER},
+      </if>
+      <if test="totalLibrary != null" >
+        #{totalLibrary,jdbcType=INTEGER},
+      </if>
+      <if test="totalUseInternet != null" >
+        #{totalUseInternet,jdbcType=INTEGER},
+      </if>
+      <if test="totalBathroom != null" >
+        #{totalBathroom,jdbcType=INTEGER},
+      </if>
+      <if test="totalPublicToilet != null" >
+        #{totalPublicToilet,jdbcType=INTEGER},
+      </if>
+      <if test="totalDoctor != null" >
+        #{totalDoctor,jdbcType=INTEGER},
+      </if>
+      <if test="totalGarbageDump != null" >
+        #{totalGarbageDump,jdbcType=INTEGER},
+      </if>
+      <if test="totalNotDomesticElectricity != null" >
+        #{totalNotDomesticElectricity,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.beans.VillageLivingConditions" >
+    update village_living_conditions
+    <set >
+      <if test="naturalVillageId != null" >
+        natural_village_id = #{naturalVillageId,jdbcType=INTEGER},
+      </if>
+      <if test="distanceToTown != null" >
+        distance_to_town = #{distanceToTown,jdbcType=DOUBLE},
+      </if>
+      <if test="isConcreteRoadToTown != null" >
+        is_concrete_road_to_town = #{isConcreteRoadToTown,jdbcType=BIT},
+      </if>
+      <if test="isThereBus != null" >
+        Is_there_bus = #{isThereBus,jdbcType=BIT},
+      </if>
+      <if test="totalUninstalledTapWater != null" >
+        "total_uninstalled tap_water" = #{totalUninstalledTapWater,jdbcType=INTEGER},
+      </if>
+      <if test="totalDangerousHouse != null" >
+        total_dangerous_house = #{totalDangerousHouse,jdbcType=INTEGER},
+      </if>
+      <if test="totalLibrary != null" >
+        total_library = #{totalLibrary,jdbcType=INTEGER},
+      </if>
+      <if test="totalUseInternet != null" >
+        total_use_internet = #{totalUseInternet,jdbcType=INTEGER},
+      </if>
+      <if test="totalBathroom != null" >
+        total_bathroom = #{totalBathroom,jdbcType=INTEGER},
+      </if>
+      <if test="totalPublicToilet != null" >
+        total_public_toilet = #{totalPublicToilet,jdbcType=INTEGER},
+      </if>
+      <if test="totalDoctor != null" >
+        total_doctor = #{totalDoctor,jdbcType=INTEGER},
+      </if>
+      <if test="totalGarbageDump != null" >
+        total_garbage_dump = #{totalGarbageDump,jdbcType=INTEGER},
+      </if>
+      <if test="totalNotDomesticElectricity != null" >
+        total_not_domestic_electricity = #{totalNotDomesticElectricity,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.beans.VillageLivingConditions" >
+    update village_living_conditions
+    set natural_village_id = #{naturalVillageId,jdbcType=INTEGER},
+      distance_to_town = #{distanceToTown,jdbcType=DOUBLE},
+      is_concrete_road_to_town = #{isConcreteRoadToTown,jdbcType=BIT},
+      Is_there_bus = #{isThereBus,jdbcType=BIT},
+      "total_uninstalled tap_water" = #{totalUninstalledTapWater,jdbcType=INTEGER},
+      total_dangerous_house = #{totalDangerousHouse,jdbcType=INTEGER},
+      total_library = #{totalLibrary,jdbcType=INTEGER},
+      total_use_internet = #{totalUseInternet,jdbcType=INTEGER},
+      total_bathroom = #{totalBathroom,jdbcType=INTEGER},
+      total_public_toilet = #{totalPublicToilet,jdbcType=INTEGER},
+      total_doctor = #{totalDoctor,jdbcType=INTEGER},
+      total_garbage_dump = #{totalGarbageDump,jdbcType=INTEGER},
+      total_not_domestic_electricity = #{totalNotDomesticElectricity,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
