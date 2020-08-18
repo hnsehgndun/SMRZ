@@ -1,22 +1,16 @@
 package com.crm.beans;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 所在地地址信息表
  */
-public class LocationAddress implements Serializable {
+public class LocationAddress {
 
     /**
      * 所在地地址信息表主键id
      */
     private Integer locationId;
-
-    /**
-     * 关联记录的主键id
-     */
-    private Integer associateId;
 
     /**
      * 所在省id
@@ -88,22 +82,12 @@ public class LocationAddress implements Serializable {
      */
     private Date updateTime;
 
-    private static final long serialVersionUID = 1L;
-
     public Integer getLocationId() {
         return locationId;
     }
 
     public void setLocationId(Integer locationId) {
         this.locationId = locationId;
-    }
-
-    public Integer getAssociateId() {
-        return associateId;
-    }
-
-    public void setAssociateId(Integer associateId) {
-        this.associateId = associateId;
     }
 
     public Integer getProvinceId() {
@@ -216,31 +200,5 @@ public class LocationAddress implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", locationId=").append(locationId);
-        sb.append(", associateId=").append(associateId);
-        sb.append(", provinceId=").append(provinceId);
-        sb.append(", provinceName=").append(provinceName);
-        sb.append(", provinceCode=").append(provinceCode);
-        sb.append(", cityId=").append(cityId);
-        sb.append(", cityName=").append(cityName);
-        sb.append(", cityCode=").append(cityCode);
-        sb.append(", countyId=").append(countyId);
-        sb.append(", countyName=").append(countyName);
-        sb.append(", countyCode=").append(countyCode);
-        sb.append(", detailAddress=").append(detailAddress);
-        sb.append(", createUserId=").append(createUserId);
-        sb.append(", updateUserId=").append(updateUserId);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append("]");
-        return sb.toString();
     }
 }

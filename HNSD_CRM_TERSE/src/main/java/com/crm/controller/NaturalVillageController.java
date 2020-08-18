@@ -1,5 +1,6 @@
 package com.crm.controller;
 
+import com.crm.beans.LocationAddress;
 import com.crm.beans.NaturalVillage;
 import com.crm.beans.User;
 import com.crm.service.NaturalVillageService;
@@ -41,7 +42,7 @@ public class NaturalVillageController {
     @ApiOperation(value="添加自然村信息")
     @PostMapping("/addNaturalVillage")
     @ResponseBody
-    public JSONResponse addNaturalVillage(HttpSession session, NaturalVillage naturalVillage){
+    public JSONResponse addNaturalVillage(HttpSession session, NaturalVillage naturalVillage, LocationAddress locationAddress){
         String mess = "";
 
         User user = (User) session.getAttribute("loginUser");
@@ -64,6 +65,26 @@ public class NaturalVillageController {
         if(naturalVillage.getVillageChiefId()  == null){
             // 参数不完整villageChiefId
             mess += "自然村负责人不能为空,";
+        }
+
+        if(locationAddress.getProvinceId()  == null){
+            // 参数不完整villageChiefId
+            mess += "省份信息不能为空,";
+        }
+
+        if(locationAddress.getCityId()  == null){
+            // 参数不完整villageChiefId
+            mess += "城市信息不能为空,";
+        }
+
+        if(locationAddress.getCountyId()  == null){
+            // 参数不完整villageChiefId
+            mess += "区县信息不能为空,";
+        }
+
+        if(locationAddress.getDetailAddress()  == null){
+            // 参数不完整villageChiefId
+            mess += "详细地址信息不能为空,";
         }
 
         if(!StringUtils.isEmpty(naturalVillage.getNaturalVillageCode())){
