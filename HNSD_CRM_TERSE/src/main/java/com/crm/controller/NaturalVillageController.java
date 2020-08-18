@@ -56,7 +56,7 @@ public class NaturalVillageController {
             mess += "自然村名称不能为空,";
         }
 
-        if(StringUtils.isEmpty(naturalVillage.getNaturalVillageAddress())){
+        if(naturalVillage.getNaturalVillageAddress() == null){
             // 参数不完整naturalVillageAddress
             mess += "自然村地址不能为空,";
         }
